@@ -1,0 +1,311 @@
+# Persona 5–Inspired Portfolio Website
+
+## Technical Stack Documentation
+
+---
+
+## 1. Purpose of This Document
+
+This document defines the **recommended technology stack** for building Ezaz’s Persona 5–inspired portfolio website. The stack is chosen to support:
+
+* High-impact animations
+* Sharp UI transitions
+* Component-driven design
+* Excellent performance
+* Long-term maintainability
+
+This is written as if the project were being reviewed by a senior frontend engineer or a technical art lead.
+
+---
+
+## 2. Core Technical Requirements
+
+The portfolio must support:
+
+* Complex UI animations (Persona-style transitions)
+* High-contrast, non-standard layouts
+* Fast load times despite visual richness
+* Easy iteration on content (games, GDDs, breakdowns)
+* Clean separation of logic, visuals, and content
+
+The stack must *enable expression*, not limit it.
+
+---
+
+## 3. Recommended Architecture Overview
+
+**Architecture Type:**
+
+* Modern frontend SPA with static generation
+
+**High-Level Flow:**
+
+* Static build for performance
+* Client-side animation orchestration
+* Content-driven components
+
+This ensures the site feels like a **game UI**, not a CMS page.
+
+---
+
+## 4. Frontend Stack
+
+### 4.1 Framework: Next.js (React)
+
+**Why Next.js:**
+
+* Industry-standard
+* Static Site Generation (SSG) for speed
+* Excellent routing for page transitions
+* Strong recruiter familiarity
+
+**Usage:**
+
+* Page routing
+* Layout composition
+* Component structure
+
+---
+
+### 4.2 Language: TypeScript
+
+**Why TypeScript:**
+
+* Safer refactors
+* Self-documenting components
+* Professional-grade codebase
+
+**Usage:**
+
+* Component props
+* Data models (Projects, GDDs, Breakdowns)
+
+---
+
+## 5. Styling & Layout System
+
+### 5.1 Styling: Tailwind CSS
+
+**Why Tailwind:**
+
+* Rapid iteration
+* Strong control over spacing and layout
+* Encourages intentional design
+
+**Usage:**
+
+* Utility-first layout control
+* Responsive behavior
+* High-contrast theming
+
+**Persona-Specific Use:**
+
+* Aggressive margins and offsets
+* Custom utility classes for slanted panels
+
+---
+
+### 5.2 Design Tokens
+
+**Tokens Defined:**
+
+* Colors (Red, Black, Cream, Accent)
+* Font sizes
+* Spacing units
+* Animation timing curves
+
+Tokens ensure visual consistency across chaotic layouts.
+
+---
+
+## 6. Animation & Interaction Layer
+
+### 6.1 Animation Library: Framer Motion
+
+**Why Framer Motion:**
+
+* Declarative animations
+* Complex sequencing support
+* Smooth page transitions
+
+**Usage:**
+
+* Page enter/exit animations
+* Hover states
+* Menu transitions
+
+**Persona-Specific Patterns:**
+
+* Directional slide-ins
+* Snap animations
+* Hard cuts with easing
+
+---
+
+### 6.2 Scroll Animations
+
+**Tool:** Framer Motion (scroll hooks)
+
+**Usage:**
+
+* Section reveals
+* Storytelling flows in Game Breakdowns
+
+Avoid excessive parallax; Persona favors *snappy* motion.
+
+---
+
+## 7. Media Handling
+
+### 7.1 Video
+
+**Tooling:**
+
+* Native HTML5 video
+* Optimized MP4 / WebM
+
+**Usage:**
+
+* Game trailers
+* Gameplay snippets
+
+Videos should autoplay muted on interaction, not on page load.
+
+---
+
+### 7.2 Images
+
+**Tool:** Next.js Image Component
+
+**Usage:**
+
+* Automatic optimization
+* Lazy loading
+* Responsive sizing
+
+Important for annotated breakdown visuals.
+
+---
+
+## 8. Content Management Strategy
+
+### 8.1 Content Source: Local Markdown / JSON
+
+**Why:**
+
+* Version-controlled
+* Easy iteration
+* No CMS dependency
+
+**Content Types:**
+
+* Released games
+* Design documents
+* Game breakdown articles
+
+This reinforces a *designer-developer* identity.
+
+---
+
+### 8.2 Optional Headless CMS (Future)
+
+**Examples:**
+
+* Sanity
+* Contentful
+
+Only introduce if content volume grows significantly.
+
+---
+
+## 9. Accessibility & Performance
+
+### 9.1 Accessibility
+
+* Semantic HTML
+* Keyboard navigation
+* Motion-reduced mode support
+
+Persona-style visuals should never block usability.
+
+---
+
+### 9.2 Performance Optimization
+
+* Static builds
+* Code splitting
+* Lazy-loaded animations
+* Asset compression
+
+Target: Sub-2s initial load on desktop.
+
+---
+
+## 10. Hosting & Deployment
+
+### 10.1 Hosting Platform: Vercel
+
+**Why:**
+
+* Native Next.js support
+* Fast global CDN
+* Easy deployments
+
+---
+
+### 10.2 CI/CD
+
+* Automatic builds on Git push
+* Preview deployments for iteration
+
+Feels like shipping a live product, not a static site.
+
+---
+
+## 11. Tooling & Developer Experience
+
+### 11.1 Code Quality
+
+* ESLint
+* Prettier
+
+Keeps chaos intentional.
+
+---
+
+### 11.2 Version Control
+
+* Git + GitHub
+* Feature-based commits
+
+Shows professional workflow.
+
+---
+
+## 12. Optional Enhancements (Nice-to-Have)
+
+* Sound effects toggle (Web Audio API)
+* Theme switcher (Alt Persona palette)
+* Interactive micro-experiments
+
+Only if performance remains clean.
+
+---
+
+## 13. Why This Stack Fits the Portfolio
+
+This stack:
+
+* Supports bold UI experimentation
+* Demonstrates real-world engineering discipline
+* Aligns with modern game-adjacent frontend workflows
+
+It communicates that Ezaz is not just a designer—but someone who understands **systems, tooling, and execution**.
+
+---
+
+## 14. Final Note
+
+The technology should never overpower the design—but it must be capable of **keeping up with it**.
+
+This stack ensures the portfolio feels like a *playable interface*, not a webpage.

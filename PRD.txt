@@ -1,0 +1,275 @@
+# Product Requirements Document (PRD)
+
+## Product Title
+
+**Ezaz — Persona 5–Inspired Portfolio Website**
+
+## Author
+
+Ezaz
+
+## Version
+
+v1.0
+
+## Purpose of This Document
+
+This PRD defines the functional, visual, and experiential requirements for designing and building a Persona 5–themed portfolio website for Ezaz, a Full Stack Game Designer. It serves as a single source of truth for designers, developers, and collaborators.
+
+---
+
+## 1. Product Overview
+
+### 1.1 Product Vision
+
+Create a bold, interactive, Persona 5–inspired portfolio website that communicates Ezaz’s identity as a **Full Stack Game Designer**—someone who understands systems, aesthetics, UX, and player psychology. The site should feel like a *stylish game interface*, not a traditional portfolio.
+
+### 1.2 Problem Statement
+
+Most game design portfolios are visually safe and fail to express personality, design philosophy, or interaction sensibility. This project aims to solve that by presenting Ezaz’s work through a high-contrast, interactive, and memorable experience inspired by Persona 5’s UI language.
+
+### 1.3 Goals & Success Metrics
+
+**Primary Goals:**
+
+* Establish a strong, memorable personal brand
+* Showcase shipped games and design depth
+* Demonstrate UI/UX sensibility through interaction
+
+**Success Metrics:**
+
+* Recruiter can understand Ezaz’s role within 2 minutes
+* Projects are easy to navigate and clearly explained
+* Positive qualitative feedback on style and clarity
+
+---
+
+## 2. Target Audience
+
+### 2.1 Primary Audience
+
+* Game studios
+* Hiring managers
+* Creative directors
+* Lead designers
+
+### 2.2 Secondary Audience
+
+* Indie collaborators
+* Fellow designers
+* Design students
+
+### 2.3 User Needs
+
+* Quickly assess skill level and experience
+* See shipped work and design thinking
+* Experience taste, polish, and interaction quality
+
+---
+
+## 3. Brand & Design Direction
+
+### 3.1 Core Brand Traits
+
+* Stylish
+* Confident
+* Analytical
+* Playful but intentional
+
+### 3.2 Visual Style
+
+Inspired by **Persona 5**, without direct IP replication.
+
+**Color Palette:**
+
+* Primary: Crimson Red
+* Secondary: Black
+* Neutral: Off-white / Cream
+* Accent (optional): Yellow or Electric Blue
+
+**Typography:**
+
+* Display Font: Bold, angular, Persona-style font (headers, titles)
+* Body Font: Clean sans-serif (paragraphs, descriptions)
+
+### 3.3 Motion & Interaction
+
+* Sharp, snappy transitions
+* Directional slide-ins
+* Hover-triggered animations
+* Persona-style menu transitions between pages
+
+---
+
+## 4. Information Architecture
+
+### 4.1 Page List
+
+1. Landing Page (About Me + Contact)
+2. Released Games (Projects)
+3. Design Documents (GDD)
+4. Game Breakdowns
+
+### 4.2 Global Navigation
+
+* Persistent navigation menu
+* Minimal items
+* Persona-style animated open/close
+
+---
+
+## 5. Functional Requirements (By Page)
+
+### 5.1 Landing Page — About Me + Contact
+
+**Objectives:**
+
+* Introduce Ezaz
+* Establish design philosophy
+* Provide contact access
+
+**Key Sections:**
+
+* Hero section (Name, Role, Tagline)
+* Short personal introduction
+* Design philosophy ("95% perfect" mindset)
+* Skills overview
+* Contact details (Email, socials, resume download)
+
+**Functional Requirements:**
+
+* Smooth scroll navigation
+* CTA buttons with hover animations
+* Resume download link
+
+---
+
+### 5.2 Released Games Page
+
+**Objectives:**
+
+* Showcase shipped games
+* Highlight design contributions
+
+**Content Per Game:**
+
+* Game title
+* Platform / Studio
+* Role & responsibilities
+* Trailer or gameplay video
+* Tools & engines used
+
+**Functional Requirements:**
+
+* Grid or card-based layout
+* Click to expand detailed view
+* Media playback support
+
+---
+
+### 5.3 Design Documents (GDD Page)
+
+**Objectives:**
+
+* Show structured design thinking
+* Demonstrate documentation skills
+
+**Content Types:**
+
+* Game Design Documents
+* Mechanics breakdowns
+* Concept pitches
+* UI/UX flows
+
+**Functional Requirements:**
+
+* Tabbed or segmented layout
+* PDF or embedded document viewing
+* Clear hierarchy and scannability
+
+---
+
+### 5.4 Game Breakdowns Page
+
+**Objectives:**
+
+* Display analytical and critical thinking
+* Show understanding of game systems
+
+**Content Types:**
+
+* Feature analysis
+* Mechanics deep dives
+* UX critiques
+* Redesign proposals
+
+**Functional Requirements:**
+
+* Scroll-based storytelling
+* Image annotations
+* Section highlighting
+
+---
+
+## 6. Non-Functional Requirements
+
+### 6.1 Performance
+
+* Fast load times
+* Optimized animations
+* Lazy-loaded media
+
+### 6.2 Accessibility
+
+* Readable contrast ratios
+* Keyboard navigation support
+* Clear font sizes
+
+### 6.3 Responsiveness
+
+* Desktop-first design
+* Fully responsive on tablet and mobile
+
+---
+
+## 7. Technical Requirements
+
+### 7.1 Frontend
+
+* Modern web stack (React / Next.js / Framer / Webflow)
+* Component-based architecture
+
+### 7.2 Animations
+
+* CSS or JS-based transitions
+* No excessive motion causing distraction
+
+### 7.3 Hosting
+
+* Static hosting preferred
+* CDN support for media
+
+---
+
+## 8. Risks & Mitigations
+
+| Risk                  | Mitigation                       |
+| --------------------- | -------------------------------- |
+| Over-stylization      | Balance visuals with readability |
+| Performance issues    | Optimize animations and assets   |
+| Persona IP similarity | Use inspiration, not replication |
+
+---
+
+## 9. Future Enhancements
+
+* Light/Dark Persona mode
+* Interactive mini-experiments
+* Blog or devlog section
+* Sound toggle for UI effects
+
+---
+
+## 10. Final Notes
+
+This product should feel like an extension of Ezaz as a designer—expressive, intentional, and confident. Every interaction should subtly reinforce the idea that the creator understands *games as experiences*, not just products.

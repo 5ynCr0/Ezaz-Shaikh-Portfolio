@@ -1,0 +1,394 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Oswald:wght@700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* === BASE STYLES === */
+@layer base {
+  :root {
+    --crimson: #E73A3A;
+    --ink: #0D0D0D;
+    --cream: #FAF7F0;
+    --electric: #00D4FF;
+    --warning: #FFD93D;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  body {
+    @apply bg-ink text-cream font-body antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    @apply bg-crimson text-cream;
+  }
+
+  /* On crimson backgrounds, use ink selection so it stays visible */
+  .bg-crimson ::selection,
+  .bg-crimson::selection,
+  .slant-panel-red ::selection,
+  .slant-panel-red::selection,
+  .btn-persona ::selection,
+  .btn-persona::selection {
+    background: var(--ink);
+    color: var(--cream);
+  }
+}
+
+/* === COMPONENT STYLES === */
+@layer components {
+
+  /* Slanted Panel - Core Persona 5 UI Element */
+  .slant-panel {
+    @apply relative bg-cream text-ink;
+    transform: skewX(-6deg);
+    border: 4px solid var(--ink);
+  }
+
+  .slant-panel-content {
+    transform: skewX(6deg);
+  }
+
+  .slant-panel-red {
+    @apply bg-crimson text-cream;
+    border-color: var(--cream);
+  }
+
+  /* Aggressive Panel - Heavy contrast blocks */
+  .aggressive-panel {
+    @apply relative;
+    clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%);
+  }
+
+  /* Torn Edge Effect */
+  .torn-edge {
+    position: relative;
+  }
+
+  .torn-edge::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: inherit;
+    clip-path: polygon(0% 0%, 5% 50%, 10% 0%, 15% 50%, 20% 0%,
+        25% 50%, 30% 0%, 35% 50%, 40% 0%, 45% 50%,
+        50% 0%, 55% 50%, 60% 0%, 65% 50%, 70% 0%,
+        75% 50%, 80% 0%, 85% 50%, 90% 0%, 95% 50%, 100% 0%,
+        100% 100%, 0% 100%);
+  }
+
+  /* Persona-style Display Text */
+  .display-text {
+    @apply font-display uppercase tracking-wider;
+    text-shadow: 4px 4px 0px var(--crimson);
+  }
+
+  .display-text-outline {
+    @apply font-display uppercase tracking-wider;
+    -webkit-text-stroke: 2px var(--crimson);
+    color: transparent;
+  }
+
+  /* CTA Buttons */
+  .btn-persona {
+    @apply relative inline-block px-8 py-4 font-display text-xl uppercase tracking-wider;
+    @apply bg-crimson text-cream border-4 border-ink;
+    @apply transition-all duration-200;
+    transform: skewX(-6deg);
+    box-shadow: 6px 6px 0px 0px var(--ink);
+  }
+
+  .btn-persona:hover {
+    transform: skewX(-6deg) translate(-3px, -3px);
+    box-shadow: 9px 9px 0px 0px var(--ink);
+  }
+
+  .btn-persona:active {
+    transform: skewX(-6deg) translate(2px, 2px);
+    box-shadow: 3px 3px 0px 0px var(--ink);
+  }
+
+  .btn-persona-text {
+    display: inline-block;
+    transform: skewX(6deg);
+  }
+
+  /* Secondary Button */
+  .btn-outline {
+    @apply relative inline-block px-8 py-4 font-display text-xl uppercase tracking-wider;
+    @apply bg-transparent text-cream border-4 border-cream;
+    @apply transition-all duration-200;
+    transform: skewX(-6deg);
+  }
+
+  .btn-outline:hover {
+    @apply bg-cream text-ink;
+  }
+
+  /* Card Styles */
+  .game-card {
+    @apply relative overflow-hidden;
+    @apply bg-ink-light border-4 border-cream/20;
+    @apply transition-all duration-300;
+  }
+
+  .game-card:hover {
+    @apply border-crimson;
+    transform: translate(-4px, -4px);
+    box-shadow: 8px 8px 0px 0px var(--crimson);
+  }
+
+  /* Navigation Link */
+  .nav-link {
+    @apply relative font-display text-2xl uppercase tracking-wider;
+    @apply text-cream transition-colors duration-200;
+  }
+
+  .nav-link::before {
+    content: '';
+    @apply absolute left-0 bottom-0 w-0 h-1 bg-crimson;
+    @apply transition-all duration-300;
+  }
+
+  .nav-link:hover::before {
+    @apply w-full;
+  }
+
+  .nav-link:hover {
+    @apply text-crimson;
+  }
+
+  /* Section Divider */
+  .section-divider {
+    @apply relative h-2 bg-crimson my-12;
+    transform: skewX(-12deg);
+  }
+
+  /* Highlight Tag */
+  .tag {
+    @apply inline-block px-4 py-1 font-display text-sm uppercase;
+    @apply bg-crimson/20 text-crimson border border-crimson;
+    transform: skewX(-6deg);
+  }
+
+  .tag-text {
+    display: inline-block;
+    transform: skewX(6deg);
+  }
+
+  /* === RANSOM NOTE STYLES === */
+  .ransom-container {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 6px;
+    font-family: 'Oswald', 'Impact', 'Anton', sans-serif;
+  }
+
+  .ransom-letter {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: clamp(2.5rem, 10vw, 8rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  .ransom-space {
+    display: inline-block;
+    width: 1rem;
+  }
+
+  /* Small variant for nav/compact usage */
+  .ransom-container-sm {
+    gap: 3px;
+  }
+
+  .ransom-container-sm .ransom-letter {
+    font-size: 1.5rem;
+    padding: 2px 6px;
+  }
+
+  .ransom-container-sm .ransom-space {
+    width: 0.5rem;
+  }
+
+  /* Medium variant for page titles */
+  .ransom-container-md {
+    gap: 4px;
+  }
+
+  .ransom-container-md .ransom-letter {
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    padding: 4px 8px;
+  }
+
+  .ransom-container-md .ransom-space {
+    width: 0.75rem;
+  }
+
+  /* Responsive letter sizing */
+  @media (min-width: 640px) {
+    .ransom-letter {
+      padding: 6px 14px;
+    }
+
+    .ransom-space {
+      width: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .ransom-letter {
+      padding: 8px 16px;
+    }
+
+    .ransom-space {
+      width: 2rem;
+    }
+  }
+}
+
+/* === UTILITY CLASSES === */
+@layer utilities {
+
+  /* Diagonal Background Lines */
+  .bg-diagonal {
+    background-image: repeating-linear-gradient(-45deg,
+        transparent,
+        transparent 2px,
+        rgba(231, 58, 58, 0.05) 2px,
+        rgba(231, 58, 58, 0.05) 4px);
+  }
+
+  /* Aggressive Skew Utilities */
+  .skew-sharp {
+    transform: skewX(-12deg);
+  }
+
+  .skew-mild {
+    transform: skewX(-6deg);
+  }
+
+  .unskew-sharp {
+    transform: skewX(12deg);
+  }
+
+  .unskew-mild {
+    transform: skewX(6deg);
+  }
+
+  /* Text Glow */
+  .text-glow {
+    text-shadow: 0 0 20px var(--crimson), 0 0 40px var(--crimson);
+  }
+
+  /* Border Animations */
+  .border-animate {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .border-animate::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 3px solid transparent;
+    transition: border-color 0.3s ease;
+  }
+
+  .border-animate:hover::before {
+    border-color: var(--crimson);
+  }
+
+  /* Mask Effects */
+  .mask-diagonal {
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+  }
+
+  .mask-diagonal-reverse {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
+  }
+
+  /* Persona Menu Item Style */
+  .menu-item {
+    @apply relative pl-8;
+  }
+
+  .menu-item::before {
+    content: '>';
+    @apply absolute left-0 text-crimson font-display text-2xl;
+    @apply opacity-0 -translate-x-4 transition-all duration-200;
+  }
+
+  .menu-item:hover::before {
+    @apply opacity-100 translate-x-0;
+  }
+}
+
+/* === TORN PAPER REVEAL (Canvas) === */
+.torn-reveal-canvas-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.torn-reveal-canvas-wrapper canvas {
+  display: block;
+}
+
+/* === ANIMATIONS === */
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(231, 58, 58, 0.5);
+  }
+
+  50% {
+    box-shadow: 0 0 40px rgba(231, 58, 58, 0.8);
+  }
+}
+
+@keyframes slash-reveal {
+  0% {
+    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+  }
+
+  100% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-slash-reveal {
+  animation: slash-reveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* === SCROLLBAR STYLING === */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-ink-light;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-crimson;
+  border: 3px solid var(--ink);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-crimson-light;
+}

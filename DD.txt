@@ -1,0 +1,259 @@
+# Persona 5–Inspired Portfolio Website
+
+## Design Document
+
+---
+
+## 1. Design Goal & Experience Pillars
+
+### Primary Goal
+
+Create a portfolio website that **feels like navigating a game UI**, specifically inspired by *Persona 5*’s bold, rebellious, high-contrast visual language—while clearly communicating Ezaz’s skill as a **Full Stack Game Designer**.
+
+### Experience Pillars
+
+1. **Stylish Rebellion** – Loud, confident, anti-generic
+2. **Clarity Through Contrast** – Bold shapes + readable structure
+3. **Kinetic UI** – Motion as communication, not decoration
+4. **Designer-First Thinking** – Systems, logic, and intent are visible
+
+The site should feel like the user has entered *Ezaz’s Palace*.
+
+---
+
+## 2. Visual Language Breakdown (Persona 5 Reference)
+
+### 2.1 Core Aesthetic Traits
+
+Derived from the provided Persona 5 UI references:
+
+* Asymmetrical layouts
+* Jagged, torn-paper style panels
+* High-contrast black, white, and red
+* Text framed inside aggressive geometric shapes
+* UI that feels *hand-cut* rather than perfectly aligned
+
+Nothing should feel centered or calm by default.
+
+---
+
+## 3. Color System
+
+### Primary Colors
+
+* **Crimson Red** – Energy, rebellion, highlights
+* **Pure Black** – Base background, negative space
+* **Off-White / Cream** – Text panels, contrast surfaces
+
+### Accent Colors (Contextual Use)
+
+* **Cyan / Teal** – Interactive prompts (e.g., “Press Any Button”)
+* **Yellow** – Warnings, emphasis, CTA moments
+
+### Usage Rules
+
+* Red should *lead* the eye, not flood the screen
+* White/cream is reserved for readable content panels
+* Black dominates backgrounds
+
+---
+
+## 4. Typography System
+
+### Display Typography (Persona-Inspired)
+
+**Usage:**
+
+* Page titles
+* Navigation labels
+* Section headers
+
+**Characteristics:**
+
+* Bold
+* Angular
+* Slightly irregular baselines
+* Large font sizes
+
+Text should feel like it’s shouting a message.
+
+### Body Typography
+
+**Usage:**
+
+* Descriptions
+* GDD content
+* Case studies
+
+**Characteristics:**
+
+* Clean sans-serif
+* High readability
+* Neutral personality to balance loud headers
+
+### Typography Rules
+
+* Mix large display text with compact body text
+* Allow overlaps between text and shapes
+* Do not over-align; slight chaos is intentional
+
+---
+
+## 5. Shape & Layout Language
+
+### Panels & Containers
+
+Inspired by Persona menus and character info screens:
+
+* Slanted rectangles
+* Overlapping layers
+* Thick outlines
+* Sharp corners
+
+Avoid rounded cards and soft shadows.
+
+### Composition Philosophy
+
+* Left-heavy or diagonal compositions
+* Text blocks framed aggressively
+* Images partially cropped or masked
+
+The layout should feel *designed*, not templated.
+
+---
+
+## 6. Motion & Interaction Design
+
+### Interaction Principles
+
+Motion should:
+
+* Guide attention
+* Reinforce hierarchy
+* Provide feedback
+
+### Key Motion Patterns
+
+* **Page Transitions:** Hard cuts, diagonal wipes, slide-ins
+* **Hover States:** Text shifts, color inversion, panel expansion
+* **Menu Animations:** Persona-style snap-open menus
+
+### Example Interactions
+
+* Hovering a project card causes:
+
+  * Red panel slide-in
+  * Title snapping into place
+* Navigating pages feels like switching game screens
+
+---
+
+## 7. Navigation Design
+
+### Navigation Style
+
+* Minimal persistent navigation
+* Persona-inspired menu list
+* Large clickable items
+
+### Navigation Items
+
+* About / Contact
+* Released Games
+* Design Documents
+* Game Breakdowns
+
+Navigation should feel intentional, not hidden.
+
+---
+
+## 8. Page-Level Design Direction
+
+### 8.1 Landing Page — About Me + Contact
+
+**Visual Tone:** Calling Card
+
+**Design Elements:**
+
+* Huge name typography
+* Persona-style tagline panel
+* Slanted intro text blocks
+* Bold CTA buttons
+
+**Emotional Goal:**
+“This person knows who they are.”
+
+---
+
+### 8.2 Released Games Page
+
+**Visual Tone:** Dossier / Case File
+
+**Design Elements:**
+
+* Game cards styled like Persona menus
+* Expand-on-click details
+* Video framed in aggressive borders
+
+**Emotional Goal:**
+“This is real, shipped work.”
+
+---
+
+### 8.3 Design Documents (GDD Page)
+
+**Visual Tone:** Designer’s Notebook
+
+**Design Elements:**
+
+* Tabbed sections
+* Large section headers
+* Scrollable document panels
+
+**Emotional Goal:**
+“This person thinks in systems.”
+
+---
+
+### 8.4 Game Breakdowns Page
+
+**Visual Tone:** Analysis Room
+
+**Design Elements:**
+
+* Annotated screenshots
+* Callout panels
+* Visual diagrams
+
+**Emotional Goal:**
+“This person understands *why* games work.”
+
+---
+
+## 9. Accessibility & Readability Guardrails
+
+Despite the bold style:
+
+* Maintain WCAG-compliant contrast
+* Avoid motion overload
+* Ensure text remains readable on all devices
+
+Chaos is visual, not functional.
+
+---
+
+## 10. Final Design Philosophy Statement
+
+This website is not pretending to be Persona 5.
+
+It **borrows its visual language** to communicate:
+
+* Confidence
+* Taste
+* Intentional design thinking
+
+The portfolio itself should feel like a **designed system**—a playable UI that represents Ezaz as a designer who understands interaction at every level.
+
+---
+
+*If this site were a game menu, it should make the user want to press “Start”.*
