@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import GameCard from "@/components/GameCard";
 import { staggerContainer, fadeUp } from "@/lib/animations";
 import RansomNote from "@/components/RansomNote";
@@ -566,10 +567,11 @@ export default function GamesPage() {
                                                         className="relative aspect-video bg-ink-lighter border-2 border-cream/20 overflow-hidden mb-3"
                                                         style={{ transform: "skewX(-3deg)" }}
                                                     >
-                                                        <img
+                                                        <Image
                                                             src={screenshot.image}
                                                             alt={screenshot.caption}
-                                                            className="absolute inset-0 w-full h-full object-cover"
+                                                            fill
+                                                            className="object-cover"
                                                             style={{ transform: "skewX(3deg) scale(1.1)" }}
                                                         />
                                                         {/* Hover accent */}

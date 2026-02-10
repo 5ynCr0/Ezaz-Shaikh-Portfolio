@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Hero from "@/components/Hero";
 import SlantedPanel from "@/components/SlantedPanel";
 import Button from "@/components/Button";
@@ -131,9 +132,11 @@ export default function HomePage() {
                                     transition={{ type: "spring", stiffness: 300, damping: 20 }}
                                 >
                                     <div style={{ transform: "skewX(6deg)" }} className="flex items-center gap-4">
-                                        <img
+                                        <Image
                                             src={skill.icon}
                                             alt={skill.name}
+                                            width={32}
+                                            height={32}
                                             className="w-8 h-8 object-contain flex-shrink-0 opacity-80 group-hover:opacity-100 transition-opacity"
                                             onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
                                         />
