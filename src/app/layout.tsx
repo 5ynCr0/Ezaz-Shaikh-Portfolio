@@ -3,6 +3,7 @@ import "@/styles/globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import OverlayEffects from "@/components/OverlayEffects";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
     title: "Ezaz | Full Stack Game Designer",
@@ -29,6 +30,7 @@ export default function RootLayout({
                 <Navigation />
                 {children}
                 <Footer />
+                <Analytics />
             </body>
         </html>
     );
