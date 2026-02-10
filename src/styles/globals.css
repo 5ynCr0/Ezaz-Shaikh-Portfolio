@@ -375,6 +375,126 @@
   animation: slash-reveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
+/* Scanlines - base layer */
+.overlay-scanlines {
+  position: absolute;
+  inset: 0;
+  opacity: 1;
+  background: repeating-linear-gradient(0deg,
+      transparent,
+      transparent 1px,
+      rgba(250, 247, 240, 0.08) 1px,
+      rgba(250, 247, 240, 0.08) 2px);
+  background-size: 100% 4px;
+  animation: scanline-flicker 4s ease-in-out infinite;
+}
+
+/* Glitch sweep bar - a bright band that drifts down like signal interference */
+.overlay-glitch-bar {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg,
+      transparent 0%,
+      transparent 46%,
+      rgba(231, 58, 58, 0.03) 47%,
+      rgba(250, 247, 240, 0.06) 50%,
+      rgba(231, 58, 58, 0.03) 53%,
+      transparent 54%,
+      transparent 100%);
+  animation: glitch-sweep 12s ease-in-out infinite;
+}
+
+/* Subtle horizontal displacement bar */
+.overlay-glitch-shift {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background: linear-gradient(0deg,
+      transparent 0%,
+      transparent 49%,
+      rgba(250, 247, 240, 0.04) 49.5%,
+      rgba(250, 247, 240, 0.04) 50.5%,
+      transparent 51%,
+      transparent 100%);
+  animation: glitch-shift 6s steps(1) infinite;
+}
+
+@keyframes scanline-flicker {
+
+  0%,
+  92%,
+  100% {
+    opacity: 1;
+  }
+
+  93% {
+    opacity: 0.6;
+  }
+
+  94% {
+    opacity: 1;
+  }
+
+  95% {
+    opacity: 0.4;
+  }
+
+  96% {
+    opacity: 1;
+  }
+}
+
+@keyframes glitch-sweep {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes glitch-shift {
+
+  0%,
+  89%,
+  92%,
+  95%,
+  100% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+
+  90% {
+    opacity: 1;
+    transform: translateY(20vh);
+  }
+
+  91% {
+    opacity: 0;
+    transform: translateY(20vh);
+  }
+
+  93% {
+    opacity: 1;
+    transform: translateY(60vh);
+  }
+
+  94% {
+    opacity: 0;
+    transform: translateY(60vh);
+  }
+}
+
+/* Vignette */
+.overlay-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center,
+      transparent 90%,
+      rgba(13, 13, 13, 0.5) 100%);
+}
+
 /* === SCROLLBAR STYLING === */
 ::-webkit-scrollbar {
   width: 12px;
