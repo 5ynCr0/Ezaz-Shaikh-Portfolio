@@ -159,7 +159,7 @@ export default function Hero({
                             <span className="font-display text-lg lg:text-xl text-cream/90 tracking-wide mb-6">Image Not Found</span>
                             <p className="text-sm text-cream/60 leading-relaxed mb-6">
                                 I&apos;m usually behind the scenes<br />designing systems.<br /><br />
-                                Here's my cat instead. He likes pats.
+                                Here&apos;s my cat instead. He likes pats.
                             </p>
                             <div ref={catRef} className="relative cursor-pointer" onClick={spawnHearts}>
                                 <pre className="text-cream/90 text-xs leading-tight font-mono select-none">{`⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀⠀⠀⠀⠀
