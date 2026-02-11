@@ -3,6 +3,7 @@ import "@/styles/globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import OverlayEffects from "@/components/OverlayEffects";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
     title: "Ezaz | Gameplay & Systems Designer",
@@ -56,6 +57,7 @@ export default function RootLayout({
                 <Navigation />
                 {children}
                 <Footer />
+                <SpeedInsights />
             </body>
         </html>
     );
