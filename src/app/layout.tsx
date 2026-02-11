@@ -5,15 +5,42 @@ import Footer from "@/components/Footer";
 import OverlayEffects from "@/components/OverlayEffects";
 
 export const metadata: Metadata = {
-    title: "Ezaz | Full Stack Game Designer",
+    title: "Ezaz | Gameplay & Systems Designer",
     description:
-        "Portfolio of Ezaz — A Full Stack Game Designer who understands systems, aesthetics, UX, and player psychology.",
-    keywords: ["game designer", "game development", "portfolio", "UX design", "game systems"],
+        "Portfolio of Ezaz, A Gameplay & Systems Designer focused on clarity, who understands systems, aesthetics, UX, and player psychology.",
+    keywords: [
+        "Ezaz",
+        "gameplay designer",
+        "systems designer",
+        "game designer",
+        "level design",
+        "UX design",
+        "Unity",
+        "mobile games",
+        "casual games",
+        "pc games",
+        "game design portfolio",
+        "progression design",
+    ],
     authors: [{ name: "Ezaz" }],
     openGraph: {
-        title: "Ezaz | Full Stack Game Designer",
-        description: "Designing systems that players feel, not just see.",
+        title: "Ezaz | Gameplay & Systems Designer",
+        description: "Designing systems that feel good to play, not just good on paper.",
         type: "website",
+        images: [
+            {
+                url: "/og.webp",
+                width: 1200,
+                height: 630,
+                alt: "Ezaz | Gameplay & Systems Designer Portfolio",
+            },
+        ],
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Ezaz | Gameplay & Systems Designer",
+        description: "Designing systems that feel good to play, not just good on paper.",
+        images: ["/og.webp"],
     },
 };
 
