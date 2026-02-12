@@ -11,13 +11,15 @@ import RansomNote from "@/components/RansomNote";
 export default function LandingPage() {
     return (
         <>
-            {/* 
+            {/* Hero Section */}
+
             <Hero
                 name="EZAZ SHAIKH"
                 title="Gameplay and Systems Designer"
                 tagline="Driven by imagination, and powered by iteration."
             />
-
+            {/* 
+            
             <section id="about" className="py-24 relative">
                 <div className="container mx-auto px-8">
                     <motion.div
@@ -215,7 +217,7 @@ export default function LandingPage() {
                 </div>
             </section>
             */}
-            <h1 className="text-4xl text-center py-20">Debugging...</h1>
+            {/* <h1 className="text-4xl text-center py-20">Debugging...</h1> */}
         </>
     );
 }
