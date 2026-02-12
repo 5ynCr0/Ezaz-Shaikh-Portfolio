@@ -107,11 +107,11 @@ export default function Hero({
                         variants={fadeUp}
                     >
                         <div
-                            className="bg-crimson px-8 py-4 border-4 border-ink"
+                            className="bg-ink/80 px-8 py-4 border-4 border-crimson backdrop-blur-sm"
                             style={{ transform: "skewX(-6deg)" }}
                         >
                             <span
-                                className="font-display text-2xl md:text-4xl text-cream block"
+                                className="font-display text-2xl md:text-4xl text-crimson block"
                                 style={{ transform: "skewX(6deg)" }}
                             >
                                 {title}
