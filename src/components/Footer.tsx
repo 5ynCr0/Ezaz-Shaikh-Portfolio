@@ -10,11 +10,11 @@ export default function Footer() {
                         href="https://www.shubhamsinghania.me/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-crimson hover:text-cream transition-colors"
+                        className="text-crimson hover:text-cream transition-all inline-block hover:scale-110"
                     >
                         Shubham
                     </a>
-                    {" "}· © Copyright <span className="text-cream">Ezaz Shaikh</span>
+                    {" "}· © Copyright <a href="https://www.linkedin.com/in/ezazxshaikh/" target="_blank" rel="noopener noreferrer" className="text-cream hover:text-crimson transition-all inline-block hover:scale-110">Ezaz Shaikh</a>
                 </p>
             </div>
         </footer>

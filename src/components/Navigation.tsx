@@ -8,10 +8,10 @@ import { menuVariants, menuItemVariants, staggerContainer } from "@/lib/animatio
 import RansomNote from "./RansomNote";
 
 const navItems = [
-    { label: "About", href: "/" },
-    { label: "Games", href: "/games" },
+    { label: "Games", href: "/" },
     { label: "GDDs", href: "/gdd" },
     { label: "Analysis", href: "/breakdowns" },
+    { label: "About", href: "/about" },
 ];
 
 export default function Navigation() {
@@ -29,7 +29,7 @@ export default function Navigation() {
     const handleMainButtonClick = () => {
         if (showBackButton) {
             // Navigate back to the respective list
-            if (isGameDetail) router.push("/games");
+            if (isGameDetail) router.push("/");
             else if (isGddDetail) router.push("/gdd");
         } else {
             // Toggle menu
@@ -168,12 +168,13 @@ export default function Navigation() {
 
                         {/* Contact CTA */}
                         <div className="absolute bottom-8 left-8 right-8">
-                            <a
-                                href="mailto:ezazxshaikh@gmail.com"
-                                className="btn-persona w-full text-center block"
+                            <Link
+                                href="/about#contact"
+                                onClick={() => setIsOpen(false)}
+                                className="btn-persona w-full text-center block px-6 py-3 text-lg"
                             >
                                 <span className="btn-persona-text">Get in Touch</span>
-                            </a>
+                            </Link>
                         </div>
                     </motion.nav>
                 )}

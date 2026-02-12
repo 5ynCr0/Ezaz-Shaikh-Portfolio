@@ -66,7 +66,7 @@ const breakdowns = [
 
 export default function BreakdownsPage() {
     return (
-        <main className="min-h-screen pt-24 pb-16">
+        <main className="min-h-screen pt-36 pb-16">
             <div className="container mx-auto px-8">
                 {/* Page Header */}
                 <motion.div

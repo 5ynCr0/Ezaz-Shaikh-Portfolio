@@ -41,7 +41,7 @@ export default function GDDPage({ params }: GDDPageProps) {
     }
 
     return (
-        <main className="min-h-screen pt-24 pb-16 bg-ink-light text-cream">
+        <main className="min-h-screen pt-36 pb-16 bg-ink-light text-cream">
             <div className="container mx-auto px-8 max-w-4xl">
                 {/* Back Link */}
 

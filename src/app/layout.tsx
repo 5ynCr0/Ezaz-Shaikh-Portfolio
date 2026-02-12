@@ -66,6 +66,8 @@ const oswald = Oswald({
     display: "swap",
 });
 
+import Header from "@/components/Header";
+
 export default function RootLayout({
     children,
 }: {
@@ -78,6 +80,7 @@ export default function RootLayout({
             </head>
             <body className={`${inter.variable} ${bebas.variable} ${oswald.variable} bg-ink text-cream overflow-x-hidden font-body`}>
                 <OverlayEffects />
+                <Header />
                 <Navigation />
                 {children}
                 <Footer />
