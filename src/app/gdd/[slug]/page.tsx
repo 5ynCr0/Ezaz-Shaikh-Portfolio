@@ -43,12 +43,7 @@ export default function GDDPage({ params }: GDDPageProps) {
         <main className="min-h-screen pt-24 pb-16 bg-cream text-ink">
             <div className="container mx-auto px-8 max-w-4xl">
                 {/* Back Link */}
-                <Link
-                    href="/gdd"
-                    className="inline-flex items-center gap-2 text-crimson font-display text-lg mb-8 hover:text-crimson-dark transition-colors"
-                >
-                    ← BACK TO DOCUMENTS
-                </Link>
+
 
                 {/* Header */}
                 <span className="font-display text-crimson text-lg block">
