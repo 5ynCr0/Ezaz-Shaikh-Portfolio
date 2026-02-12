@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import OverlayEffects from "@/components/OverlayEffects";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
     title: "Ezaz Shaikh | Gameplay & Systems Designer",
@@ -61,46 +62,7 @@ export default function RootLayout({
                 <Analytics />
                 <SpeedInsights />
                 <SpeedInsights />
-                {/* JSON-LD Structured Data */}
-                <script
-                    type="application/ld+json"
-                    dangerouslySetInnerHTML={{
-                        __html: JSON.stringify({
-                            '@context': 'https://schema.org',
-                            '@graph': [
-                                {
-                                    '@type': 'Person',
-                                    '@id': 'https://ezazshaikh.vercel.app/#person',
-                                    name: 'Ezaz Shaikh',
-                                    url: 'https://ezazshaikh.vercel.app',
-                                    image: {
-                                        '@type': 'ImageObject',
-                                        url: 'https://ezazshaikh.vercel.app/og.webp',
-                                        width: 1200,
-                                        height: 630,
-                                        caption: 'Ezaz Shaikh | Gameplay & Systems Designer'
-                                    },
-                                    description: 'Ezaz Shaikh is a Gameplay & Systems Designer focused on clarity, who understands systems, aesthetics, UX, and player psychology.',
-                                    jobTitle: 'Gameplay & Systems Designer',
-                                    sameAs: [
-                                        'https://www.linkedin.com/in/ezazxshaikh/'
-                                    ]
-                                },
-                                {
-                                    '@type': 'WebSite',
-                                    '@id': 'https://ezazshaikh.vercel.app/#website',
-                                    url: 'https://ezazshaikh.vercel.app',
-                                    name: 'Ezaz Shaikh Portfolio',
-                                    description: 'Portfolio of Ezaz Shaikh, A Gameplay & Systems Designer',
-                                    publisher: {
-                                        '@id': 'https://ezazshaikh.vercel.app/#person'
-                                    },
-                                    inLanguage: 'en-US'
-                                }
-                            ]
-                        })
-                    }}
-                />
+                <JsonLd />
 
             </body >
         </html >
