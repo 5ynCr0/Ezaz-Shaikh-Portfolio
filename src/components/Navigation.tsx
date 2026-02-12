@@ -144,7 +144,13 @@ export default function Navigation() {
                                                     : "opacity-0 -translate-x-4"
                                                     }`}
                                             >
-                                                ▶
+                                                <svg
+                                                    viewBox="0 0 24 24"
+                                                    className="w-6 h-6 fill-current"
+                                                    style={{ transform: "translateY(2px)" }}
+                                                >
+                                                    <path d="M8 5v14l11-7z" />
+                                                </svg>
                                             </span>
                                             <span
                                                 className={`font-display text-5xl transition-colors duration-200 relative ${isActive
