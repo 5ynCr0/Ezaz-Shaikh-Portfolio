@@ -60,6 +60,8 @@ export default function RootLayout({
                 <Footer />
                 <Analytics />
                 <SpeedInsights />
+                <SpeedInsights />
+                {/* JSON-LD Structured Data */}
                 <script
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{
