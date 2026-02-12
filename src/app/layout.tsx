@@ -54,6 +54,9 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en">
+            <head>
+                <JsonLd />
+            </head>
             <body className="bg-ink text-cream overflow-x-hidden">
                 <OverlayEffects />
                 <Navigation />
@@ -62,8 +65,6 @@ export default function RootLayout({
                 <Analytics />
                 <SpeedInsights />
                 <SpeedInsights />
-                <JsonLd />
-
             </body >
         </html >
     );
