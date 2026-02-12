@@ -45,6 +45,7 @@ export default function GamesPage() {
                                     platform={game.platform}
                                     role={game.role}
                                     youtubeId={game.youtubeId || undefined}
+                                    genres={game.genres}
                                     tags={game.tags}
                                 />
                             </Link>

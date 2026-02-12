@@ -21,6 +21,7 @@ export interface Game {
     studio: string;
     year: string;
     description: string;
+    genres: string[];
     tags: string[];
     youtubeId: string | null;
     storeUrl: string | null;
@@ -53,6 +54,7 @@ export const games: Game[] = [
         year: "2025",
         description:
             "Core Trials is a motion-based, pixel-art bullet hell roguelike you play with just your webcam. Move your body to control the core, dodge deadly patterns, strike back at the masters, and survive intense trials. Immerse yourself in high-octane action and unleash the true power of your core!",
+        genres: ["Roguelike", "Bullethell", "Casual"],
         tags: ["Systems Design", "Combat Design", "Level Design", "Balance", "Marketing", "UI/UX", "Sound Design", "Technical Setup"],
         youtubeId: "N1biXvbHSZM",
         storeUrl: "https://store.steampowered.com/app/2549160/Core_Trials/",
@@ -148,6 +150,7 @@ export const games: Game[] = [
         year: "2024",
         description:
             "First of its kind motion-based match-3D game that has you swaying and swerving to collect falling items before the timer ends.",
+        genres: ["Match3D", "Puzzle", "Hybrid-casual"],
         tags: ["Puzzle Design", "Level Design", "LiveOps Design", "Balance", "Sound Design", "LiveOps", "Technical Setup", "UI/UX"],
         youtubeId: "35pZw8WeeFE",
         storeUrl: "https://play.google.com/store/apps/details?id=io.Ohilo.MoveMatch3D",
@@ -217,6 +220,7 @@ export const games: Game[] = [
         year: "2024",
         description:
             "Motion-controlled puzzle game where players must safeguard a delicate balloon from numerous obstacles using a protector shield.",
+        genres: ["Endless Runner", "Puzzle", "Hyper-casual"],
         tags: ["Puzzle Design", "Systems Design", "Level Design", "LiveOps Design", "Balance", "UI/UX"],
         youtubeId: "4DlSo3C8KzA",
         storeUrl: "https://play.google.com/store/apps/details?id=io.ohilo.DriftUp",

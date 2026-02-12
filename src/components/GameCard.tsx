@@ -11,6 +11,7 @@ interface GameCardProps {
     image?: string;
     youtubeId?: string;
     tags?: string[];
+    genres?: string[];
     onClick?: () => void;
 }
 
@@ -21,6 +22,7 @@ export default function GameCard({
     image,
     youtubeId,
     tags = [],
+    genres = [],
     onClick,
 }: GameCardProps) {
     // Use YouTube thumbnail if youtubeId is provided, otherwise use image
@@ -81,6 +83,20 @@ export default function GameCard({
                     {title}
                 </h3>
 
+                {/* Genres */}
+                {genres.length > 0 && (
+                    <div className="flex flex-wrap gap-2 mb-2">
+                        {genres.map((genre) => (
+                            <span
+                                key={genre}
+                                className="font-display text-sm text-crimson tracking-wider border border-crimson/30 px-2 py-0.5"
+                            >
+                                {genre.toUpperCase()}
+                            </span>
+                        ))}
+                    </div>
+                )}
+
                 {/* Role */}
                 <p className="text-cream/70 text-sm mb-4">{role}</p>
 
@@ -103,6 +119,6 @@ export default function GameCard({
                 whileHover={{ width: "100%" }}
                 transition={{ duration: 0.3 }}
             />
-        </motion.div>
+        </motion.div >
     );
 }
