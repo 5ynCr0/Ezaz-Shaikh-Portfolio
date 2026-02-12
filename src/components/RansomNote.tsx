@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef, useMemo } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 
 interface RansomNoteProps {
@@ -30,18 +30,14 @@ function shuffle<T>(arr: T[]): T[] {
 
 /**
  * Build a randomised style list for `count` letters.
- * - For 4+ letters: every group of 4 uses all 4 styles in a shuffled order.
- * - For < 4 letters: pick a random subset so no two letters share a style.
  */
 function buildStyleMap(count: number) {
     if (count === 0) return [];
 
     if (count < 4) {
-        // Pick `count` unique styles at random
         return shuffle(STYLES).slice(0, count);
     }
 
-    // For 4+ letters, fill in groups of 4 (each group is a fresh shuffle)
     const result: typeof STYLES = [];
     while (result.length < count) {
         result.push(...shuffle(STYLES));
@@ -57,13 +53,22 @@ export default function RansomNote({
     size = 'lg'
 }: RansomNoteProps) {
     const containerRef = useRef<HTMLDivElement>(null);
+    const [styleMap, setStyleMap] = useState<typeof STYLES>([]);
+    const [rotations, setRotations] = useState<string[]>([]);
+    const [mounted, setMounted] = useState(false);
 
-    // Build the randomised style map once per mount
+    // Initial server render state - consistent/empty to avoid mismatch
     const letterChars = text.replace(/ /g, '');
-    const styleMap = useMemo(() => buildStyleMap(letterChars.length), [letterChars.length]);
 
     useEffect(() => {
-        if (!animate || !containerRef.current) return;
+        // Generate random styles and rotations strictly on client side
+        setStyleMap(buildStyleMap(letterChars.length));
+        setRotations(letterChars.split('').map(() => `rotate(${Math.random() * 8 - 4}deg)`));
+        setMounted(true);
+    }, [letterChars, text]);
+
+    useEffect(() => {
+        if (!mounted || !animate || !containerRef.current) return;
 
         const ctx = gsap.context(() => {
             gsap.fromTo('.ransom-letter',
@@ -86,11 +91,7 @@ export default function RansomNote({
         }, containerRef);
 
         return () => ctx.revert();
-    }, [animate, staggerDelay]);
-
-    const getRandomRotation = () => {
-        return `rotate(${Math.random() * 8 - 4}deg)`;
-    };
+    }, [animate, staggerDelay, mounted]);
 
     let letterIndex = 0;
 
@@ -104,9 +105,11 @@ export default function RansomNote({
                     return <span key={index} className="ransom-space" />;
                 }
 
-                const style = styleMap[letterIndex];
+                // Default style for server/initial render
+                const style = mounted ? styleMap[letterIndex] : STYLES[0];
+                const rotation = mounted ? rotations[letterIndex] : 'rotate(0deg)';
+
                 letterIndex++;
-                const rotation = getRandomRotation();
 
                 return (
                     <span
