@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { menuVariants, menuItemVariants, staggerContainer } from "@/lib/animations";
 import RansomNote from "./RansomNote";
@@ -17,31 +17,72 @@ const navItems = [
 export default function Navigation() {
     const [isOpen, setIsOpen] = useState(false);
     const pathname = usePathname();
-    const activeLabel = navItems.find(item => item.href === pathname)?.label || "About";
+    const router = useRouter();
+    const activeLabel = navItems.find((item) => item.href === pathname)?.label || "About";
+
+    // Check if we are on a detail page (e.g., /games/slug or /gdd/slug)
+    // We exclude the main listing pages themselves
+    const isGameDetail = pathname.startsWith("/games/") && pathname !== "/games";
+    const isGddDetail = pathname.startsWith("/gdd/") && pathname !== "/gdd";
+    const showBackButton = isGameDetail || isGddDetail;
+
+    const handleMainButtonClick = () => {
+        if (showBackButton) {
+            // Navigate back to the respective list
+            if (isGameDetail) router.push("/games");
+            else if (isGddDetail) router.push("/gdd");
+        } else {
+            // Toggle menu
+            setIsOpen(!isOpen);
+        }
+    };
 
     return (
         <>
-            {/* Menu Toggle Button */}
+            {/* Menu Toggle / Back Button */}
             <button
-                onClick={() => setIsOpen(!isOpen)}
+                onClick={handleMainButtonClick}
                 className="fixed top-6 left-6 z-50 w-14 h-14 flex flex-col items-center justify-center gap-1.5 bg-crimson border-4 border-ink shadow-brutal-sm transition-transform hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-brutal"
                 style={{ transform: "skewX(-6deg)" }}
-                aria-label="Toggle menu"
+                aria-label={showBackButton ? "Go Back" : "Toggle menu"}
             >
+                {/* Top Bar */}
                 <motion.span
-                    className="w-6 h-0.5 bg-cream block"
+                    className="w-6 h-0.5 bg-cream block origin-center"
                     style={{ transform: "skewX(6deg)" }}
-                    animate={isOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
+                    animate={
+                        showBackButton
+                            ? { rotate: -45, y: 5, width: "12px", x: -5 } // Top part of arrow
+                            : isOpen
+                                ? { rotate: 45, y: 8 } // X state
+                                : { rotate: 0, y: 0, width: "24px", x: 0 } // Hamburg state
+                    }
                 />
+
+                {/* Middle Bar */}
                 <motion.span
                     className="w-6 h-0.5 bg-cream block"
                     style={{ transform: "skewX(6deg)" }}
-                    animate={isOpen ? { opacity: 0 } : { opacity: 1 }}
+                    animate={
+                        showBackButton
+                            ? { opacity: 1, rotate: 0, width: "24px" } // Middle shaft of arrow
+                            : isOpen
+                                ? { opacity: 0 } // Hidden in X state
+                                : { opacity: 1, rotate: 0, width: "24px" } // Hamburg state
+                    }
                 />
+
+                {/* Bottom Bar */}
                 <motion.span
-                    className="w-6 h-0.5 bg-cream block"
+                    className="w-6 h-0.5 bg-cream block origin-center"
                     style={{ transform: "skewX(6deg)" }}
-                    animate={isOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
+                    animate={
+                        showBackButton
+                            ? { rotate: 45, y: -5, width: "12px", x: -5 } // Bottom part of arrow
+                            : isOpen
+                                ? { rotate: -45, y: -8 } // X state
+                                : { rotate: 0, y: 0, width: "24px", x: 0 } // Hamburg state
+                    }
                 />
             </button>
 
@@ -97,16 +138,20 @@ export default function Navigation() {
                                             onClick={() => setIsOpen(false)}
                                             className="group flex items-center gap-4"
                                         >
-                                            <span className={`text-crimson font-display text-xl transition-all duration-200 ${isActive
-                                                ? "opacity-100 translate-x-0"
-                                                : "opacity-0 -translate-x-4"
-                                                }`}>
+                                            <span
+                                                className={`text-crimson font-display text-xl transition-all duration-200 ${isActive
+                                                        ? "opacity-100 translate-x-0"
+                                                        : "opacity-0 -translate-x-4"
+                                                    }`}
+                                            >
                                                 ▶
                                             </span>
-                                            <span className={`font-display text-5xl transition-colors duration-200 relative ${isActive
-                                                ? "text-crimson"
-                                                : "text-cream group-hover:text-crimson"
-                                                }`}>
+                                            <span
+                                                className={`font-display text-5xl transition-colors duration-200 relative ${isActive
+                                                        ? "text-crimson"
+                                                        : "text-cream group-hover:text-crimson"
+                                                    }`}
+                                            >
                                                 {item.label}
                                             </span>
                                         </Link>

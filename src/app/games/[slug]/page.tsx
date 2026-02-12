@@ -45,12 +45,7 @@ export default function GamePage({ params }: GamePageProps) {
         <main className="min-h-screen pt-24 pb-16 bg-ink-light">
             <div className="container mx-auto px-8 max-w-4xl">
                 {/* Back Link */}
-                <Link
-                    href="/games"
-                    className="inline-flex items-center gap-2 text-crimson font-display text-lg mb-8 hover:text-crimson-light transition-colors"
-                >
-                    ← BACK TO GAMES
-                </Link>
+
 
                 {/* Game Info */}
                 <div className="mb-8">
