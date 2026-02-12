@@ -42,48 +42,48 @@ export default function Navigation() {
             {/* Menu Toggle / Back Button */}
             <button
                 onClick={handleMainButtonClick}
-                className="fixed top-6 left-6 z-50 w-14 h-14 flex flex-col items-center justify-center gap-1.5 bg-crimson border-4 border-ink shadow-brutal-sm transition-transform hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-brutal"
+                className="fixed top-6 left-6 z-50 w-14 h-14 flex items-center justify-center bg-crimson border-4 border-ink shadow-brutal-sm transition-transform hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-brutal"
                 style={{ transform: "skewX(-6deg)" }}
                 aria-label={showBackButton ? "Go Back" : "Toggle menu"}
             >
-                {/* Top Bar */}
-                <motion.span
-                    className="w-6 h-0.5 bg-cream block origin-center"
-                    style={{ transform: "skewX(6deg)" }}
-                    animate={
-                        showBackButton
-                            ? { rotate: -45, y: 5, width: "12px", x: -5 } // Top part of arrow
-                            : isOpen
-                                ? { rotate: 45, y: 8 } // X state
-                                : { rotate: 0, y: 0, width: "24px", x: 0 } // Hamburg state
-                    }
-                />
+                {/* Un-skew wrapper to isolate rotation animations from skew */}
+                <div className="flex flex-col items-center justify-center gap-1.5" style={{ transform: "skewX(6deg)" }}>
+                    {/* Top Bar */}
+                    <motion.span
+                        className="w-6 h-0.5 bg-cream block origin-center"
+                        animate={
+                            showBackButton
+                                ? { rotate: -45, y: 5, width: "12px", x: -5 } // Top part of arrow
+                                : isOpen
+                                    ? { rotate: 45, y: 8 } // X state
+                                    : { rotate: 0, y: 0, width: "24px", x: 0 } // Hamburg state
+                        }
+                    />
 
-                {/* Middle Bar */}
-                <motion.span
-                    className="w-6 h-0.5 bg-cream block"
-                    style={{ transform: "skewX(6deg)" }}
-                    animate={
-                        showBackButton
-                            ? { opacity: 1, rotate: 0, width: "24px" } // Middle shaft of arrow
-                            : isOpen
-                                ? { opacity: 0 } // Hidden in X state
-                                : { opacity: 1, rotate: 0, width: "24px" } // Hamburg state
-                    }
-                />
+                    {/* Middle Bar */}
+                    <motion.span
+                        className="w-6 h-0.5 bg-cream block"
+                        animate={
+                            showBackButton
+                                ? { opacity: 1, rotate: 0, width: "24px" } // Middle shaft of arrow
+                                : isOpen
+                                    ? { opacity: 0 } // Hidden in X state
+                                    : { opacity: 1, rotate: 0, width: "24px" } // Hamburg state
+                        }
+                    />
 
-                {/* Bottom Bar */}
-                <motion.span
-                    className="w-6 h-0.5 bg-cream block origin-center"
-                    style={{ transform: "skewX(6deg)" }}
-                    animate={
-                        showBackButton
-                            ? { rotate: 45, y: -5, width: "12px", x: -5 } // Bottom part of arrow
-                            : isOpen
-                                ? { rotate: -45, y: -8 } // X state
-                                : { rotate: 0, y: 0, width: "24px", x: 0 } // Hamburg state
-                    }
-                />
+                    {/* Bottom Bar */}
+                    <motion.span
+                        className="w-6 h-0.5 bg-cream block origin-center"
+                        animate={
+                            showBackButton
+                                ? { rotate: 45, y: -5, width: "12px", x: -5 } // Bottom part of arrow
+                                : isOpen
+                                    ? { rotate: -45, y: -8 } // X state
+                                    : { rotate: 0, y: 0, width: "24px", x: 0 } // Hamburg state
+                        }
+                    />
+                </div>
             </button>
 
             {/* Overlay */}
@@ -140,16 +140,16 @@ export default function Navigation() {
                                         >
                                             <span
                                                 className={`text-crimson font-display text-xl transition-all duration-200 ${isActive
-                                                        ? "opacity-100 translate-x-0"
-                                                        : "opacity-0 -translate-x-4"
+                                                    ? "opacity-100 translate-x-0"
+                                                    : "opacity-0 -translate-x-4"
                                                     }`}
                                             >
                                                 ▶
                                             </span>
                                             <span
                                                 className={`font-display text-5xl transition-colors duration-200 relative ${isActive
-                                                        ? "text-crimson"
-                                                        : "text-cream group-hover:text-crimson"
+                                                    ? "text-crimson"
+                                                    : "text-cream group-hover:text-crimson"
                                                     }`}
                                             >
                                                 {item.label}

@@ -76,10 +76,10 @@ export default function BreakdownsPage() {
                     className="mb-16"
                 >
                     <span className="font-display text-crimson text-xl tracking-widest">
-                        ANALYSIS
+                        BREAKDOWNS
                     </span>
                     <div className="mt-2">
-                        <RansomNote text="GAME BREAKDOWNS" size="md" />
+                        <RansomNote text="GAME ANALYSIS" size="md" />
                     </div>
                     <div className="w-32 h-1 bg-crimson mt-6" />
                     <p className="text-cream/70 text-xl mt-6 max-w-2xl">

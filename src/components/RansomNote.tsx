@@ -100,30 +100,30 @@ export default function RansomNote({
             ref={containerRef}
             className={`ransom-container ${size === 'sm' ? 'ransom-container-sm' : size === 'md' ? 'ransom-container-md' : ''} ${className}`}
         >
-            {text.split('').map((letter, index) => {
-                if (letter === ' ') {
-                    return <span key={index} className="ransom-space" />;
-                }
+            {text.split(' ').map((word, wordIndex) => (
+                <span key={wordIndex} className="inline-block whitespace-nowrap mr-3 last:mr-0">
+                    {word.split('').map((letter, charIndex) => {
+                        // Default style for server/initial render
+                        const style = mounted ? styleMap[letterIndex] : STYLES[0];
+                        const rotation = mounted ? rotations[letterIndex] : 'rotate(0deg)';
 
-                // Default style for server/initial render
-                const style = mounted ? styleMap[letterIndex] : STYLES[0];
-                const rotation = mounted ? rotations[letterIndex] : 'rotate(0deg)';
+                        letterIndex++;
 
-                letterIndex++;
-
-                return (
-                    <span
-                        key={index}
-                        className="ransom-letter"
-                        style={{
-                            ...style,
-                            transform: rotation,
-                        }}
-                    >
-                        {letter}
-                    </span>
-                );
-            })}
+                        return (
+                            <span
+                                key={`${wordIndex}-${charIndex}`}
+                                className="ransom-letter"
+                                style={{
+                                    ...style,
+                                    transform: rotation,
+                                }}
+                            >
+                                {letter}
+                            </span>
+                        );
+                    })}
+                </span>
+            ))}
         </div>
     );
 }

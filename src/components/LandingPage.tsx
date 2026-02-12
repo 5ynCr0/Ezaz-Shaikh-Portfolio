@@ -103,7 +103,7 @@ export default function LandingPage() {
 
                         <motion.div
                             variants={fadeUp}
-                            className="grid grid-cols-2 md:grid-cols-4 gap-6"
+                            className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
                         >
                             {[
                                 { name: "Unity", category: "Game Engine", icon: "/icons/unity.png" },
@@ -121,7 +121,7 @@ export default function LandingPage() {
                             ].map((skill) => (
                                 <motion.div
                                     key={skill.name}
-                                    className="group relative p-6 bg-ink border-2 border-cream/20 hover:border-crimson transition-colors duration-300"
+                                    className="group relative p-4 lg:p-6 bg-ink border-2 border-cream/20 hover:border-crimson transition-colors duration-300"
                                     initial={{ skewX: -6 }}
                                     whileHover={{
                                         skewX: 0,
@@ -131,20 +131,20 @@ export default function LandingPage() {
                                     }}
                                     transition={{ type: "spring", stiffness: 300, damping: 20 }}
                                 >
-                                    <div style={{ transform: "skewX(6deg)" }} className="flex items-center gap-4">
+                                    <div style={{ transform: "skewX(6deg)" }} className="flex items-center gap-3 lg:gap-4">
                                         <Image
                                             src={skill.icon}
                                             alt={skill.name}
                                             width={32}
                                             height={32}
-                                            className="w-8 h-8 object-contain flex-shrink-0 opacity-80 group-hover:opacity-100 transition-opacity"
+                                            className="w-6 h-6 lg:w-8 lg:h-8 object-contain flex-shrink-0 opacity-80 group-hover:opacity-100 transition-opacity"
                                             onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
                                         />
-                                        <div>
-                                            <span className="font-display text-2xl text-cream group-hover:text-crimson transition-colors">
+                                        <div className="min-w-0 flex-1">
+                                            <span className="font-display text-lg lg:text-2xl text-cream group-hover:text-crimson transition-colors block truncate">
                                                 {skill.name}
                                             </span>
-                                            <span className="block text-cream/50 text-sm mt-1">
+                                            <span className="block text-cream/50 text-xs lg:text-sm mt-0.5 lg:mt-1 truncate">
                                                 {skill.category}
                                             </span>
                                         </div>

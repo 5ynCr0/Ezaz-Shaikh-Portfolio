@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { documents } from '@/lib/data';
+import Button from '@/components/Button';
 
 interface GDDPageProps {
     params: {
@@ -71,12 +72,19 @@ export default function GDDPage({ params }: GDDPageProps) {
 
                     {/* PDF Embed */}
                     {doc.pdfUrl && (
-                        <div className="mt-8 border-2 border-cream/20 shadow-lg">
-                            <iframe
-                                src={doc.pdfUrl}
-                                className="w-full h-[80vh] min-h-[500px]"
-                                title={doc.title}
-                            />
+                        <div className="mt-8">
+                            <div className="flex justify-end mb-4">
+                                <Button href={doc.pdfUrl} variant="outline" size="sm" download>
+                                    Download PDF
+                                </Button>
+                            </div>
+                            <div className="border-2 border-cream/20 shadow-lg">
+                                <iframe
+                                    src={doc.pdfUrl}
+                                    className="w-full h-[80vh] min-h-[500px]"
+                                    title={doc.title}
+                                />
+                            </div>
                         </div>
                     )}
                 </div>
