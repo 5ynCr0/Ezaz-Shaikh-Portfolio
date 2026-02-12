@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Inter, Bebas_Neue, Oswald } from "next/font/google";
 import "@/styles/globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -46,6 +47,25 @@ export const metadata: Metadata = {
     },
 };
 
+const inter = Inter({
+    subsets: ["latin"],
+    variable: "--font-inter",
+    display: "swap",
+});
+
+const bebas = Bebas_Neue({
+    weight: "400",
+    subsets: ["latin"],
+    variable: "--font-bebas",
+    display: "swap",
+});
+
+const oswald = Oswald({
+    subsets: ["latin"],
+    variable: "--font-oswald",
+    display: "swap",
+});
+
 export default function RootLayout({
     children,
 }: {
@@ -56,7 +76,7 @@ export default function RootLayout({
             <head>
                 <JsonLd />
             </head>
-            <body className="bg-ink text-cream overflow-x-hidden">
+            <body className={`${inter.variable} ${bebas.variable} ${oswald.variable} bg-ink text-cream overflow-x-hidden font-body`}>
                 <OverlayEffects />
                 <Navigation />
                 {children}

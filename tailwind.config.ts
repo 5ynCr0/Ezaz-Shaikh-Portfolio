@@ -29,8 +29,9 @@ const config: Config = {
                 warning: "#FFD93D",
             },
             fontFamily: {
-                display: ["Bebas Neue", "Impact", "sans-serif"],
-                body: ["Inter", "system-ui", "sans-serif"],
+                display: ["var(--font-bebas)", "Impact", "sans-serif"],
+                body: ["var(--font-inter)", "system-ui", "sans-serif"],
+                oswald: ["var(--font-oswald)", "Impact", "sans-serif"],
             },
             animation: {
                 "slide-in-right": "slideInRight 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
