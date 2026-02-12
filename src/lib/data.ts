@@ -39,6 +39,7 @@ export interface GDD {
     preview: string;
     pdfUrl: string;
     pages: number;
+    image?: string;
 }
 
 export const games: Game[] = [
@@ -275,6 +276,7 @@ export const documents: GDD[] = [
         preview: "This document outlines the core combat loop, systems, and progression of Core Trials, a bullet-hell roguelike focused on motion-based gameplay, modular core abilities, and escalating encounters driven by curses, blessings, and boss phases.",
         pdfUrl: "/Design Documents/Core Trials GDD.pdf",
         pages: 15,
+        image: "/Design Documents/CT_Gdd_img.webp",
     },
     {
         id: 2,
@@ -286,6 +288,7 @@ export const documents: GDD[] = [
         preview: "This document outlines the design and vision for BlockFest, a goal-driven block puzzle game that reimagines classic grid-based gameplay with colored block objectives, level-based progression, power-ups, and retention-focused systems for hybrid-casual mobile audiences.",
         pdfUrl: "/Design Documents/Blockfest GDD.pdf",
         pages: 17,
+        image: "/Design Documents/Bf_Gdd_img.webp",
     },
     {
         id: 3,
@@ -297,5 +300,6 @@ export const documents: GDD[] = [
         preview: "This document captures the initial concept and design exploration for Move Or Not, an original motion-based puzzle idea that blends logical reasoning with real-world movement to create a fast, cognitively engaging experience.",
         pdfUrl: "/Design Documents/Move Or Not GDD.pdf",
         pages: 13,
+        image: "/Design Documents/MoN_Gdd_img.webp",
     },
 ];

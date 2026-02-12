@@ -40,7 +40,7 @@ export default function GDDPage({ params }: GDDPageProps) {
     }
 
     return (
-        <main className="min-h-screen pt-24 pb-16 bg-cream text-ink">
+        <main className="min-h-screen pt-24 pb-16 bg-ink-light text-cream">
             <div className="container mx-auto px-8 max-w-4xl">
                 {/* Back Link */}
 
@@ -49,29 +49,29 @@ export default function GDDPage({ params }: GDDPageProps) {
                 <span className="font-display text-crimson text-lg block">
                     {doc.category}
                 </span>
-                <h1 className="font-display text-5xl md:text-6xl text-ink mt-2 mb-6">
+                <h1 className="font-display text-5xl md:text-6xl text-cream mt-2 mb-6">
                     {doc.title}
                 </h1>
                 <div className="w-24 h-1 bg-crimson mb-8" />
 
                 {/* Content */}
-                <div className="prose prose-lg max-w-none">
-                    <p className="text-ink/80 text-xl mb-6 leading-relaxed">
+                <div className="prose prose-lg max-w-none prose-invert">
+                    <p className="text-cream/80 text-xl mb-6 leading-relaxed">
                         {doc.description}
                     </p>
 
-                    <div className="bg-ink/5 p-8 border-l-4 border-crimson mb-8">
+                    <div className="bg-ink p-8 border-l-4 border-crimson mb-8">
                         <h2 className="font-display text-2xl text-crimson mb-4 mt-0">
                             DOCUMENT PREVIEW
                         </h2>
-                        <p className="text-ink/70">
+                        <p className="text-cream/70">
                             {doc.preview}
                         </p>
                     </div>
 
                     {/* PDF Embed */}
                     {doc.pdfUrl && (
-                        <div className="mt-8 border-2 border-ink/20 shadow-lg">
+                        <div className="mt-8 border-2 border-cream/20 shadow-lg">
                             <iframe
                                 src={doc.pdfUrl}
                                 className="w-full h-[80vh] min-h-[500px]"

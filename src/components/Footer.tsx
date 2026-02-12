@@ -14,7 +14,7 @@ export default function Footer() {
                     >
                         Shubham
                     </a>
-                    {" "}· © Copyright Ezaz Shaikh
+                    {" "}· © Copyright <span className="text-cream">Ezaz Shaikh</span>
                 </p>
             </div>
         </footer>

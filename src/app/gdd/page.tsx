@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { staggerContainer, fadeUp } from "@/lib/animations";
 import RansomNote from "@/components/RansomNote";
 import { documents } from "@/lib/data";
@@ -74,37 +75,70 @@ export default function GDDPage() {
                         <motion.div
                             key={doc.id}
                             variants={fadeUp}
-                            className="group"
+                            className="group h-full"
                         >
                             <Link href={`/gdd/${doc.slug}`} className="block h-full">
-                                <div
-                                    className="bg-cream text-ink p-8 border-4 border-ink transition-all duration-300 group-hover:translate-x-[-4px] group-hover:translate-y-[-4px] group-hover:shadow-brutal h-full flex flex-col"
-                                    style={{ transform: "skewX(-3deg)" }}
-                                >
-                                    <div style={{ transform: "skewX(3deg)" }} className="flex flex-col h-full">
-                                        {/* Category Badge */}
-                                        <span className="inline-block bg-crimson text-cream px-3 py-1 font-display text-sm mb-4 self-start">
-                                            {doc.category}
-                                        </span>
+                                <div className="game-card h-full flex flex-col group relative">
+                                    {/* Top Cover / Category Area */}
+                                    <div className="relative h-32 bg-ink-lighter border-b-2 border-cream/10 overflow-hidden">
+                                        {doc.image ? (
+                                            <>
+                                                <Image
+                                                    src={doc.image}
+                                                    alt={doc.title}
+                                                    fill
+                                                    className="object-cover transition-transform duration-500 group-hover:scale-110 opacity-60 group-hover:opacity-100"
+                                                />
+                                                <div className="absolute inset-0 bg-ink/20 group-hover:bg-transparent transition-colors duration-300" />
+                                            </>
+                                        ) : (
+                                            <div className="absolute inset-0 flex items-center justify-center p-6">
+                                                <span className="font-display text-4xl text-crimson/20 group-hover:text-crimson/40 transition-colors duration-300">
+                                                    GDD
+                                                </span>
+                                            </div>
+                                        )}
 
-                                        {/* Title */}
-                                        <h3 className="font-display text-3xl text-ink mb-3 group-hover:text-crimson transition-colors">
+                                        {/* Category Badge */}
+                                        <div
+                                            className="absolute top-4 right-4 bg-crimson px-3 py-1 border-2 border-ink z-10"
+                                            style={{ transform: "skewX(-6deg)" }}
+                                        >
+                                            <span
+                                                className="font-display text-sm text-cream inline-block"
+                                                style={{ transform: "skewX(6deg)" }}
+                                            >
+                                                {doc.category}
+                                            </span>
+                                        </div>
+
+                                        {/* Red overlay on hover */}
+                                        <div className="absolute inset-0 bg-crimson/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                    </div>
+
+                                    {/* Content */}
+                                    <div className="p-6 flex flex-col flex-grow">
+                                        <h3 className="font-display text-3xl text-cream mb-3 group-hover:text-crimson transition-colors">
                                             {doc.title}
                                         </h3>
 
-                                        {/* Description */}
-                                        <p className="text-ink/70 mb-4 flex-grow">{doc.description}</p>
+                                        <p className="text-cream/70 mb-4 flex-grow text-sm leading-relaxed">
+                                            {doc.description}
+                                        </p>
 
-                                        {/* Meta */}
-                                        <div className="flex items-center justify-between mt-auto">
-                                            <span className="text-ink/50 font-display">
+                                        {/* Pages & Arrow */}
+                                        <div className="flex items-center justify-between mt-auto pt-4 border-t border-cream/10">
+                                            <span className="text-cream/40 font-display text-sm">
                                                 {doc.pages} PAGES
                                             </span>
-                                            <span className="text-crimson font-display group-hover:translate-x-2 transition-transform">
-                                                VIEW →
+                                            <span className="text-crimson font-display group-hover:translate-x-1 transition-transform">
+                                                VIEW DOC →
                                             </span>
                                         </div>
                                     </div>
+
+                                    {/* Bottom Accent Line */}
+                                    <div className="absolute bottom-0 left-0 w-0 h-1 bg-crimson transition-all duration-300 group-hover:w-full" />
                                 </div>
                             </Link>
                         </motion.div>
