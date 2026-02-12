@@ -8,7 +8,7 @@ export default function Header() {
     return (
         <header className="fixed top-0 left-0 w-full z-40 pointer-events-none">
             <div className="bg-ink/90 backdrop-blur-md border-b-2 border-crimson/20 shadow-lg pointer-events-auto">
-                <div className="container mx-auto px-8 py-4 pl-24 lg:pl-8 flex items-center justify-between">
+                <div className="container mx-auto px-8 py-4 pl-24 2xl:pl-8 flex items-center justify-between">
                     {/* Name & Title */}
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
