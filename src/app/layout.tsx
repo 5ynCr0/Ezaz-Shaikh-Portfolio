@@ -3,14 +3,13 @@ import "@/styles/globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import OverlayEffects from "@/components/OverlayEffects";
-import { Analytics } from "@vercel/analytics/next";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import JsonLd from "@/components/JsonLd";
 
-metadataBase: new URL('https://ezazshaikh.vercel.app'),
+export const metadata: Metadata = {
+    metadataBase: new URL('https://ezazshaikh.vercel.app'),
     title: "Ezaz Shaikh | Gameplay & Systems Designer",
-        description:
-"Portfolio of Ezaz Shaikh, A Gameplay & Systems Designer focused on clarity, who understands systems, aesthetics, UX, and player psychology.",
+    description:
+        "Portfolio of Ezaz Shaikh, A Gameplay & Systems Designer focused on clarity, who understands systems, aesthetics, UX, and player psychology.",
     keywords: [
         "Ezaz Shaikh",
         "gameplay designer",
@@ -25,25 +24,25 @@ metadataBase: new URL('https://ezazshaikh.vercel.app'),
         "game design portfolio",
         "progression design",
     ],
-        authors: [{ name: "Ezaz" }],
-            openGraph: {
-    title: "Ezaz Shaikh | Gameplay & Systems Designer",
-        description: "Designing systems that feel good to play, not just good on paper.",
-            type: "website",
-                images: [
-                    {
-                        url: "/og.webp",
-                        width: 1200,
-                        height: 630,
-                        alt: "Ezaz Shaikh | Gameplay & Systems Designer Portfolio",
-                    },
-                ],
-    },
-twitter: {
-    card: "summary_large_image",
+    authors: [{ name: "Ezaz" }],
+    openGraph: {
         title: "Ezaz Shaikh | Gameplay & Systems Designer",
-            description: "Designing systems that feel good to play, not just good on paper.",
-                images: ["/og.webp"],
+        description: "Designing systems that feel good to play, not just good on paper.",
+        type: "website",
+        images: [
+            {
+                url: "/og.webp",
+                width: 1200,
+                height: 630,
+                alt: "Ezaz Shaikh | Gameplay & Systems Designer Portfolio",
+            },
+        ],
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Ezaz Shaikh | Gameplay & Systems Designer",
+        description: "Designing systems that feel good to play, not just good on paper.",
+        images: ["/og.webp"],
     },
 };
 
