@@ -215,7 +215,6 @@ export default function LandingPage() {
                     </motion.div>
                 </div>
             </section>
-            */}
             {/* <h1 className="text-4xl text-center py-20">Debugging...</h1> */}
         </>
     );
