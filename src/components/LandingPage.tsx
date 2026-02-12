@@ -11,14 +11,13 @@ import RansomNote from "@/components/RansomNote";
 export default function LandingPage() {
     return (
         <>
-            {/* Hero Section */}
+            {/* 
             <Hero
                 name="EZAZ SHAIKH"
                 title="Gameplay and Systems Designer"
                 tagline="Driven by imagination, and powered by iteration."
             />
 
-            {/* About Section */}
             <section id="about" className="py-24 relative">
                 <div className="container mx-auto px-8">
                     <motion.div
@@ -28,7 +27,7 @@ export default function LandingPage() {
                         viewport={{ once: true }}
                         className="grid md:grid-cols-2 gap-12 items-center"
                     >
-                        {/* Section Header */}
+                        
                         <motion.div variants={fadeUp}>
                             <div className="mb-6">
                                 <span className="font-display text-crimson text-xl tracking-widest">
@@ -48,7 +47,7 @@ export default function LandingPage() {
                             </p>
                         </motion.div>
 
-                        {/* Philosophy Panel */}
+                        
                         <motion.div variants={fadeUp}>
                             <SlantedPanel variant="red" className="mb-6">
                                 <span className="font-display text-2xl block mb-2">
@@ -83,7 +82,7 @@ export default function LandingPage() {
                 </div>
             </section>
 
-            {/* Skills Section */}
+            
             <section className="py-24 bg-ink-light relative overflow-hidden">
                 <div className="container mx-auto px-8">
                     <motion.div
@@ -156,7 +155,7 @@ export default function LandingPage() {
                 </div>
             </section>
 
-            {/* Contact Section */}
+            
             <section id="contact" className="py-24 relative">
                 <div className="container mx-auto px-8">
                     <motion.div
@@ -191,7 +190,7 @@ export default function LandingPage() {
                             </Button>
                         </motion.div>
 
-                        {/* Social Links */}
+                        
                         <motion.div
                             variants={fadeUp}
                             className="flex justify-center gap-8 mt-12"
@@ -215,6 +214,8 @@ export default function LandingPage() {
                     </motion.div>
                 </div>
             </section>
+            */}
+            <h1 className="text-4xl text-center py-20">Debugging...</h1>
         </>
     );
 }
