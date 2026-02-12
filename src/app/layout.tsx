@@ -60,21 +60,7 @@ export default function RootLayout({
                 <Footer />
                 <Analytics />
                 <SpeedInsights />
-                <script
-                    type="application/ld+json"
-                    dangerouslySetInnerHTML={{
-                        __html: JSON.stringify({
-                            '@context': 'https://schema.org',
-                            '@type': 'Person',
-                            name: 'Ezaz Shaikh',
-                            url: 'https://ezazshaikh.vercel.app',
-                            jobTitle: 'Gameplay & Systems Designer',
-                            sameAs: [
-                                'https://www.linkedin.com/in/ezazxshaikh/',
-                            ]
-                        })
-                    }}
-                />
+
             </body >
         </html >
     );
