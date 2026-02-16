@@ -34,34 +34,53 @@ const breakdowns = [
             "Monetization",
         ],
     },
-    // {
-    //     id: 2,
-    //     title: "Hades' Roguelike Progression",
-    //     game: "Hades",
-    //     type: "Deep Dive",
-    //     excerpt:
-    //         "Breaking down Supergiant's masterful blend of narrative advancement with roguelike mechanics and permanent progression.",
-    //     sections: [
-    //         "Run Structure",
-    //         "Meta Progression",
-    //         "Narrative Integration",
-    //         "Mirror of Night Analysis",
-    //     ],
-    // },
-    // {
-    //     id: 3,
-    //     title: "Celeste's Difficulty Curve",
-    //     game: "Celeste",
-    //     type: "UX Critique",
-    //     excerpt:
-    //         "How Matt Makes Games nailed accessibility without compromising challenge, and what we can learn about difficulty design.",
-    //     sections: [
-    //         "Teaching Through Levels",
-    //         "Assist Mode Philosophy",
-    //         "Challenge Rooms",
-    //         "Emotional Pacing",
-    //     ],
-    // },
+    {
+        id: 2,
+        title: "Complex vs Complicated in Game Design",
+        game: "Game Systems Design",
+        type: "System Design Fundamentals",
+        excerpt:
+            "Why true depth comes from emergent interaction and readable feedback loops, not rule density or cognitive overload.",
+        link: "https://www.linkedin.com/feed/update/urn:li:activity:7429125153684520960/",
+        sections: [
+            "Structural Clarity",
+            "Systemic Foundations",
+            "Cognitive Load vs Mental Model",
+            "Emergent Behavior",
+            "Decision Space Dynamics"
+        ],
+    },
+    {
+        id: 3,
+        title: "Confusion Is Feedback",
+        game: "Gameplay Design",
+        type: "Design Principles",
+        excerpt:
+            "Why mechanics that require repeated explanation signal a clarity issue, and why player confusion should trigger redesign, not defense.",
+        link: "https://www.linkedin.com/feed/update/urn:li:activity:7428791211886497792/",
+        sections: [
+            "UX Clarity",
+            "Cognitive Misattribution",
+            "Player Psychology",
+            "Iteration"
+        ],
+    },
+    {
+        id: 4,
+        title: "Start With the Hook",
+        game: "Showcase & Presentation",
+        type: "Design Principles",
+        excerpt:
+            "Why your showcase should begin with the strongest 5 seconds of gameplay — and why menus, settings, and polish come after the hook.",
+        link: "https://www.linkedin.com/feed/update/urn:li:activity:7427808535201112064/",
+        sections: [
+            "Completeness Bias",
+            "Showcase Sequencing",
+            "Attention Bandwidth Constraint",
+            "Value Hierarchy",
+            "Impact-First Framing",
+        ],
+    }
 ];
 
 export default function BreakdownsPage() {
