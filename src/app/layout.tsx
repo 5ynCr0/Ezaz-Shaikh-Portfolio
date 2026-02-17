@@ -67,6 +67,7 @@ const oswald = Oswald({
 });
 
 import Header from "@/components/Header";
+import RouteTransition from "@/components/RouteTransition";
 
 export default function RootLayout({
     children,
@@ -82,7 +83,9 @@ export default function RootLayout({
                 <OverlayEffects />
                 <Header />
                 <Navigation />
-                {children}
+                <RouteTransition>
+                    {children}
+                </RouteTransition>
                 <Footer />
             </body>
         </html>

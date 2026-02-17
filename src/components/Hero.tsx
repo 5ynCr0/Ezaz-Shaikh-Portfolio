@@ -6,6 +6,7 @@ import { gsap } from "gsap";
 import { staggerContainer, fadeUp } from "@/lib/animations";
 import Button from "./Button";
 import RansomNote from "./RansomNote";
+import { useRouteReady } from "./RouteTransition";
 
 interface HeroProps {
     name?: string;
@@ -20,6 +21,7 @@ export default function Hero({
 }: HeroProps) {
     const nameWords = name.split(' ');
     const catRef = useRef<HTMLDivElement>(null);
+    const isRouteReady = useRouteReady();
 
     const spawnHearts = useCallback(() => {
         const container = catRef.current;
@@ -64,8 +66,8 @@ export default function Hero({
                     style={{ transform: "rotate(-12deg) translateY(-50%)" }}
                 />
 
-                {/* Vertical accent - positioned at edge on mobile */}
-                <div className="absolute left-4 sm:left-16 top-0 bottom-0 w-1 bg-crimson/50" />
+                {/* Vertical accent - positioned further right on mobile to avoid nav collision */}
+                <div className="absolute left-12 sm:left-16 top-0 bottom-0 w-1 bg-crimson/50" />
 
                 {/* Grid pattern */}
                 <div
@@ -87,7 +89,7 @@ export default function Hero({
                     className="flex-1"
                     variants={staggerContainer}
                     initial="initial"
-                    animate="animate"
+                    animate={isRouteReady ? "animate" : "initial"}
                 >
                     {/* Name - Ransom Note Style */}
                     <motion.div className="mb-6 space-y-2" variants={fadeUp}>
@@ -132,10 +134,10 @@ export default function Hero({
                         className="flex flex-wrap gap-4"
                         variants={fadeUp}
                     >
-                        <Button href="#about" variant="primary" size="lg">
+                        <Button onClick={() => window.dispatchEvent(new CustomEvent("cube:navigate", { detail: { index: 1 } }))} variant="primary" size="lg">
                             Learn More
                         </Button>
-                        <Button href="/games" variant="outline" size="lg">
+                        <Button href="/" variant="outline" size="lg">
                             View Work
                         </Button>
                     </motion.div>
@@ -145,7 +147,7 @@ export default function Hero({
                 <motion.div
                     className="hidden lg:block flex-shrink-0"
                     initial={{ opacity: 0, x: 40 }}
-                    animate={{ opacity: 1, x: 0 }}
+                    animate={isRouteReady ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
                     transition={{ duration: 0.7, delay: 0.5, ease: "easeOut" }}
                 >
                     <div className="relative inline-block">
@@ -177,19 +179,7 @@ export default function Hero({
                 </motion.div>
             </div>
 
-            {/* Scroll Indicator */}
-            <motion.div
-                className="absolute bottom-8 left-1/2 -translate-x-1/2"
-                animate={{ y: [0, 10, 0] }}
-                transition={{ repeat: Infinity, duration: 1.5 }}
-            >
-                <div className="flex flex-col items-center gap-2">
-                    <span className="font-display text-sm text-cream/50 tracking-widest">
-                        SCROLL
-                    </span>
-                    <div className="w-0.5 h-12 bg-crimson" />
-                </div>
-            </motion.div>
+
         </section>
     );
 }

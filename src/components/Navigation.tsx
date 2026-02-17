@@ -168,13 +168,21 @@ export default function Navigation() {
 
                         {/* Contact CTA */}
                         <div className="absolute bottom-8 left-8 right-8">
-                            <Link
-                                href="/about#contact"
-                                onClick={() => setIsOpen(false)}
+                            <button
+                                onClick={() => {
+                                    setIsOpen(false);
+                                    // If already on /about, just navigate the cube
+                                    if (pathname === "/about") {
+                                        window.dispatchEvent(new CustomEvent("cube:navigate", { detail: { index: 3 } }));
+                                    } else {
+                                        // Client-side navigation so RouteTransition detects the change
+                                        router.push("/about?section=3");
+                                    }
+                                }}
                                 className="btn-persona w-full text-center block px-6 py-3 text-lg"
                             >
                                 <span className="btn-persona-text">Get in Touch</span>
-                            </Link>
+                            </button>
                         </div>
                     </motion.nav>
                 )}

@@ -27,13 +27,23 @@ export default function SlantedPanel({
     return (
         <motion.div
             className={`${baseStyles} ${variantStyles[variant]} ${className}`}
-            style={{ transform: `skewX(${skewAngle}deg)` }}
-            initial={{ opacity: 0, x: 100 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            // Move skew to motion props to ensure it persists during animation
+            initial={{ opacity: 0, x: 100, skewX: skewAngle }}
+            whileInView={{ opacity: 1, x: 0, skewX: skewAngle }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            style={{
+                backfaceVisibility: "hidden",
+                WebkitFontSmoothing: "subpixel-antialiased",
+                transformStyle: "preserve-3d" // Help nested transforms
+            }}
         >
-            <div style={{ transform: `skewX(${-skewAngle}deg)` }}>
+            <div
+                style={{
+                    transform: `skewX(${-skewAngle}deg) translateZ(0)`, // Force GPU layer for text
+                    backfaceVisibility: "hidden"
+                }}
+            >
                 {children}
             </div>
         </motion.div>

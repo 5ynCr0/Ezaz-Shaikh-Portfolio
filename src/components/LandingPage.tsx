@@ -5,165 +5,170 @@ import Image from "next/image";
 import Hero from "@/components/Hero";
 import SlantedPanel from "@/components/SlantedPanel";
 import Button from "@/components/Button";
+import CubeNavigator from "@/components/CubeNavigator";
 import { staggerContainer, fadeUp } from "@/lib/animations";
 import RansomNote from "@/components/RansomNote";
 
-export default function LandingPage() {
+function HeroSection() {
     return (
-        <>
-            {/* Hero Section */}
+        <Hero
+            name="EZAZ SHAIKH"
+            title="Gameplay and Systems Designer"
+            tagline="Driven by imagination, and powered by iteration."
+        />
+    );
+}
 
-            <Hero
-                name="EZAZ SHAIKH"
-                title="Gameplay and Systems Designer"
-                tagline="Driven by imagination, and powered by iteration."
-            />
-            {/* About Section */}
-            <section id="about" className="py-24 relative">
-                <div className="container mx-auto px-8">
-                    <motion.div
-                        variants={staggerContainer}
-                        initial="initial"
-                        whileInView="animate"
-                        viewport={{ once: true }}
-                        className="grid md:grid-cols-2 gap-12 items-center"
-                    >
-                        {/* Section Header */}
-                        <motion.div variants={fadeUp}>
-                            <div className="mb-6">
-                                <span className="font-display text-crimson text-xl tracking-widest">
-                                    01 — ABOUT
-                                </span>
-                            </div>
-                            <div className="mb-6">
-                                <RansomNote text="THE DESIGNER" size="md" />
-                            </div>
-                            <div className="w-24 h-1 bg-crimson mb-8" />
-                            <p className="text-cream/80 text-lg leading-relaxed mb-6">
-                                A <strong className="text-crimson">Gameplay & Systems Designer </strong>
-                                who gives life to ideas, shaping worlds and systems that invite players to explore, feel, and engage. My work has been recognized at India GDC in the PC/Console Game of the Year category and was selected for Tokyo Game Show&apos;s Indie 80 showcase.
-                            </p>
-                            <p className="text-cream/80 text-lg leading-relaxed mb-6">
-                                While direction and clarity matter, I believe the most meaningful experiences come from the choices no one expects. Somewhere underground, a little monster would probably agree. <i className="text-cream/10">Definitely not an Undertale reference. Definitely.</i>
-                            </p>
-                        </motion.div>
-
-                        {/* Philosophy Panel */}
-                        <motion.div variants={fadeUp}>
-                            <SlantedPanel variant="red" className="mb-6">
-                                <span className="font-display text-2xl block mb-2">
-                                    DESIGN PHILOSOPHY
-                                </span>
-                                <p className="text-cream/90 text-lg">
-                                    Deliver what players want. And what they don&apos;t yet know they want.
-                                </p>
-                            </SlantedPanel>
-
-                            <SlantedPanel variant="default">
-                                <span className="font-display text-xl text-crimson block mb-4">
-                                    WHAT I BRING
-                                </span>
-                                <ul className="space-y-2 text-ink/80">
-                                    <li className="flex items-center gap-2">
-                                        <span className="text-crimson">▸</span> Core Gameplay & Moment-to-Moment Feel
-                                    </li>
-                                    <li className="flex items-center gap-2">
-                                        <span className="text-crimson">▸</span> Systems Design, Balance & Progression
-                                    </li>
-                                    <li className="flex items-center gap-2">
-                                        <span className="text-crimson">▸</span> Rapid Prototyping → Playtest → Polish
-                                    </li>
-                                    <li className="flex items-center gap-2">
-                                        <span className="text-crimson">▸</span> Clear Design Communication (Docs & UI)
-                                    </li>
-                                </ul>
-                            </SlantedPanel>
-                        </motion.div>
-                    </motion.div>
-                </div>
-            </section>
-
-
-            <section className="py-24 bg-ink-light relative overflow-hidden">
-                <div className="container mx-auto px-8">
-                    <motion.div
-                        variants={staggerContainer}
-                        initial="initial"
-                        whileInView="animate"
-                        viewport={{ once: true }}
-                    >
-                        <motion.div variants={fadeUp} className="text-center mb-16">
+function AboutSection() {
+    return (
+        <section className="min-h-screen flex items-center py-24 relative">
+            <div className="container mx-auto px-8">
+                <motion.div
+                    variants={staggerContainer}
+                    initial="initial"
+                    animate="animate"
+                    className="grid md:grid-cols-2 gap-12 items-center"
+                >
+                    <motion.div variants={fadeUp}>
+                        <div className="mb-6">
                             <span className="font-display text-crimson text-xl tracking-widest">
-                                02 — SKILLS
+                                01 — ABOUT
                             </span>
-                            <div className="mt-4">
-                                <RansomNote text="TOOLKIT" size="md" />
-                            </div>
-                        </motion.div>
-
-                        <motion.div
-                            variants={fadeUp}
-                            className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
-                        >
-                            {[
-                                { name: "Unity", category: "Game Engine", icon: "/icons/unity.png" },
-                                { name: "VS Code", category: "IDE", icon: "/icons/vscode.png" },
-                                { name: "Figma", category: "Design", icon: "/icons/figma.png" },
-                                { name: "Photoshop", category: "Design", icon: "/icons/photoshop.png" },
-                                { name: "Premiere Pro", category: "Video Editing", icon: "/icons/premierepro.png" },
-                                { name: "DOTween", category: "Animation", icon: "/icons/dotween.png" },
-                                { name: "Play Console", category: "Publishing", icon: "/icons/playconsole.png" },
-                                { name: "Xcode", category: "Publishing", icon: "/icons/xcode.png" },
-                                { name: "Git", category: "Version Control", icon: "/icons/git.png" },
-                                { name: "Spreadsheet", category: "Management", icon: "/icons/spreadsheet.png" },
-                                { name: "Discord", category: "Communication", icon: "/icons/discord.png" },
-                                { name: "Slack", category: "Communication", icon: "/icons/slack.png" },
-                            ].map((skill) => (
-                                <motion.div
-                                    key={skill.name}
-                                    className="group relative p-4 lg:p-6 bg-ink border-2 border-cream/20 hover:border-crimson transition-colors duration-300"
-                                    initial={{ skewX: -6 }}
-                                    whileHover={{
-                                        skewX: 0,
-                                        x: -4,
-                                        y: -4,
-                                        boxShadow: "8px 8px 0px #E73A3A"
-                                    }}
-                                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                                >
-                                    <div style={{ transform: "skewX(6deg)" }} className="flex items-center gap-3 lg:gap-4">
-                                        <Image
-                                            src={skill.icon}
-                                            alt={skill.name}
-                                            width={32}
-                                            height={32}
-                                            className="w-6 h-6 lg:w-8 lg:h-8 object-contain flex-shrink-0 opacity-80 group-hover:opacity-100 transition-opacity"
-                                            onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
-                                        />
-                                        <div className="min-w-0 flex-1">
-                                            <span className="font-display text-lg lg:text-2xl text-cream group-hover:text-crimson transition-colors block truncate">
-                                                {skill.name}
-                                            </span>
-                                            <span className="block text-cream/50 text-xs lg:text-sm mt-0.5 lg:mt-1 truncate">
-                                                {skill.category}
-                                            </span>
-                                        </div>
-                                    </div>
-                                </motion.div>
-                            ))}
-                        </motion.div>
+                        </div>
+                        <div className="mb-6">
+                            <RansomNote text="THE DESIGNER" size="md" />
+                        </div>
+                        <div className="w-24 h-1 bg-crimson mb-8" />
+                        <p className="text-cream/80 text-lg leading-relaxed mb-6">
+                            A <strong className="text-crimson">Gameplay & Systems Designer </strong>
+                            who gives life to ideas, shaping worlds and systems that invite players to explore, feel, and engage. My work has been recognized at India GDC in the PC/Console Game of the Year category and was selected for Tokyo Game Show&apos;s Indie 80 showcase.
+                        </p>
+                        <p className="text-cream/80 text-lg leading-relaxed mb-6">
+                            While direction and clarity matter, I believe the most meaningful experiences come from the choices no one expects. Somewhere underground, a little monster would probably agree. <i className="text-cream/10">Definitely not an Undertale reference. Definitely.</i>
+                        </p>
                     </motion.div>
-                </div>
-            </section>
 
+                    <motion.div variants={fadeUp}>
+                        <SlantedPanel variant="red" className="mb-6">
+                            <span className="font-display text-2xl block mb-2">
+                                DESIGN PHILOSOPHY
+                            </span>
+                            <p className="text-cream/90 text-lg">
+                                Deliver what players want. And what they don&apos;t yet know they want.
+                            </p>
+                        </SlantedPanel>
 
-            <section id="contact" className="py-24 relative">
+                        <SlantedPanel variant="default">
+                            <span className="font-display text-xl text-crimson block mb-4">
+                                WHAT I BRING
+                            </span>
+                            <ul className="space-y-2 text-ink/80">
+                                <li className="flex items-center gap-2">
+                                    <span className="text-crimson">▸</span> Core Gameplay & Moment-to-Moment Feel
+                                </li>
+                                <li className="flex items-center gap-2">
+                                    <span className="text-crimson">▸</span> Systems Design, Balance & Progression
+                                </li>
+                                <li className="flex items-center gap-2">
+                                    <span className="text-crimson">▸</span> Rapid Prototyping → Playtest → Polish
+                                </li>
+                                <li className="flex items-center gap-2">
+                                    <span className="text-crimson">▸</span> Clear Design Communication (Docs & UI)
+                                </li>
+                            </ul>
+                        </SlantedPanel>
+                    </motion.div>
+                </motion.div>
+            </div>
+        </section>
+    );
+}
+
+function SkillsSection() {
+    return (
+        <section className="min-h-screen flex items-center py-24 bg-ink-light relative overflow-hidden">
+            <div className="container mx-auto px-8">
+                <motion.div
+                    variants={staggerContainer}
+                    initial="initial"
+                    animate="animate"
+                >
+                    <motion.div variants={fadeUp} className="text-center mb-16">
+                        <span className="font-display text-crimson text-xl tracking-widest">
+                            02 — SKILLS
+                        </span>
+                        <div className="mt-4">
+                            <RansomNote text="TOOLKIT" size="md" />
+                        </div>
+                    </motion.div>
+
+                    <motion.div
+                        variants={fadeUp}
+                        className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
+                    >
+                        {[
+                            { name: "Unity", category: "Game Engine", icon: "/icons/unity.png" },
+                            { name: "VS Code", category: "IDE", icon: "/icons/vscode.png" },
+                            { name: "Figma", category: "Design", icon: "/icons/figma.png" },
+                            { name: "Photoshop", category: "Design", icon: "/icons/photoshop.png" },
+                            { name: "Premiere Pro", category: "Video Editing", icon: "/icons/premierepro.png" },
+                            { name: "DOTween", category: "Animation", icon: "/icons/dotween.png" },
+                            { name: "Play Console", category: "Publishing", icon: "/icons/playconsole.png" },
+                            { name: "Xcode", category: "Publishing", icon: "/icons/xcode.png" },
+                            { name: "Git", category: "Version Control", icon: "/icons/git.png" },
+                            { name: "Spreadsheet", category: "Management", icon: "/icons/spreadsheet.png" },
+                            { name: "Discord", category: "Communication", icon: "/icons/discord.png" },
+                            { name: "Slack", category: "Communication", icon: "/icons/slack.png" },
+                        ].map((skill) => (
+                            <motion.div
+                                key={skill.name}
+                                className="group relative p-4 lg:p-6 bg-ink border-2 border-cream/20 hover:border-crimson transition-colors duration-300"
+                                initial={{ skewX: -6 }}
+                                whileHover={{
+                                    skewX: 0,
+                                    x: -4,
+                                    y: -4,
+                                    boxShadow: "8px 8px 0px #E73A3A"
+                                }}
+                                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                            >
+                                <div style={{ transform: "skewX(6deg)" }} className="flex items-center gap-3 lg:gap-4">
+                                    <Image
+                                        src={skill.icon}
+                                        alt={skill.name}
+                                        width={32}
+                                        height={32}
+                                        className="w-6 h-6 lg:w-8 lg:h-8 object-contain flex-shrink-0 opacity-80 group-hover:opacity-100 transition-opacity"
+                                        onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                                    />
+                                    <div className="min-w-0 flex-1">
+                                        <span className="font-display text-lg lg:text-2xl text-cream group-hover:text-crimson transition-colors block truncate">
+                                            {skill.name}
+                                        </span>
+                                        <span className="block text-cream/50 text-xs lg:text-sm mt-0.5 lg:mt-1 truncate">
+                                            {skill.category}
+                                        </span>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </motion.div>
+                </motion.div>
+            </div>
+        </section>
+    );
+}
+
+function ContactSection() {
+    return (
+        <section id="contact" className="min-h-screen flex flex-col relative">
+            {/* Main contact content — centered */}
+            <div className="flex-1 flex items-center py-24">
                 <div className="container mx-auto px-8">
                     <motion.div
                         variants={staggerContainer}
                         initial="initial"
-                        whileInView="animate"
-                        viewport={{ once: true }}
+                        animate="animate"
                         className="max-w-3xl mx-auto text-center"
                     >
                         <motion.div variants={fadeUp}>
@@ -191,7 +196,6 @@ export default function LandingPage() {
                             </Button>
                         </motion.div>
 
-
                         <motion.div
                             variants={fadeUp}
                             className="flex justify-center gap-8 mt-12"
@@ -199,7 +203,6 @@ export default function LandingPage() {
                             {[
                                 { name: "LinkedIn", href: "https://www.linkedin.com/in/ezazxshaikh/" },
                                 { name: "Whatsapp", href: "https://api.whatsapp.com/send?phone=918327761371" },
-                                // { name: "Itch.io", href: "#" },
                             ].map((social) => (
                                 <a
                                     key={social.name}
@@ -214,8 +217,36 @@ export default function LandingPage() {
                         </motion.div>
                     </motion.div>
                 </div>
-            </section>
+            </div>
 
-        </>
+            {/* Footer — pinned to bottom of this panel */}
+            <footer className="py-6 border-t-4 border-crimson">
+                <div className="container mx-auto px-8 text-center">
+                    <p className="text-cream/50 font-display tracking-widest text-sm">
+                        Designed and developed by{" "}
+                        <a
+                            href="https://www.shubhamsinghania.me/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-crimson hover:text-cream transition-all inline-block hover:scale-110"
+                        >
+                            Shubham
+                        </a>
+                        {" "}· © Copyright <a href="https://www.linkedin.com/in/ezazxshaikh/" target="_blank" rel="noopener noreferrer" className="text-cream hover:text-crimson transition-all inline-block hover:scale-110">Ezaz Shaikh</a>
+                    </p>
+                </div>
+            </footer>
+        </section>
     );
+}
+
+export default function LandingPage() {
+    const sections = [
+        { label: "EZAZ SHAIKH", content: <HeroSection /> },
+        { label: "WHO IS HE", content: <AboutSection /> },
+        { label: "HIS ARSENAL", content: <SkillsSection /> },
+        { label: "CONNECT WITH EZAZ", content: <ContactSection /> },
+    ];
+
+    return <CubeNavigator sections={sections} />;
 }
