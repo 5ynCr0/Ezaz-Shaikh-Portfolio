@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { games } from '@/lib/data';
+import SectionNav from '@/components/SectionNav';
 
 interface GamePageProps {
     params: {
@@ -34,12 +35,42 @@ export async function generateMetadata({ params }: GamePageProps): Promise<Metad
     };
 }
 
+// Build the sections array dynamically based on which content exists
+function buildSections(game: typeof games[number]) {
+    const sections: { id: string; label: string }[] = [
+        { id: "overview", label: "Overview" },
+    ];
+
+    if (game.youtubeId) {
+        sections.push({ id: "trailer", label: "Gameplay" });
+    }
+
+    sections.push({ id: "contributions", label: "Design Ownership" });
+    sections.push({ id: "tools", label: "Toolset" });
+
+    if (game.keyDecisions && game.keyDecisions.length > 0) {
+        sections.push({ id: "design-decisions", label: "Design Decisions" });
+    }
+
+    if (game.designContributions && game.designContributions.length > 0) {
+        sections.push({ id: "design-contributions", label: "Design Work" });
+    }
+
+    if (game.screenshots && game.screenshots.length > 0) {
+        sections.push({ id: "screenshots", label: "Screenshots" });
+    }
+
+    return sections;
+}
+
 export default function GamePage({ params }: GamePageProps) {
     const game = games.find((g) => g.slug === params.slug);
 
     if (!game) {
         notFound();
     }
+
+    const sections = buildSections(game);
 
     return (
         <main className="min-h-screen pt-36 pb-16 bg-ink-light">
@@ -100,7 +131,7 @@ export default function GamePage({ params }: GamePageProps) {
                 </div>
 
                 {/* Description */}
-                <div className="mb-8">
+                <div id="overview" className="mb-8 scroll-mt-36">
                     <h2 className="font-display text-2xl text-crimson mb-4">
                         OVERVIEW
                     </h2>
@@ -111,7 +142,7 @@ export default function GamePage({ params }: GamePageProps) {
 
                 {/* Trailer */}
                 {game.youtubeId && (
-                    <div className="mb-12">
+                    <div id="trailer" className="mb-12 scroll-mt-36">
                         <h2 className="font-display text-2xl text-crimson mb-4">
                             TRAILER
                         </h2>
@@ -128,7 +159,7 @@ export default function GamePage({ params }: GamePageProps) {
                 )}
 
                 {/* Contributions Tags */}
-                <div className="mb-12">
+                <div id="contributions" className="mb-12 scroll-mt-36">
                     <h2 className="font-display text-2xl text-crimson mb-4">
                         CONTRIBUTIONS
                     </h2>
@@ -142,7 +173,7 @@ export default function GamePage({ params }: GamePageProps) {
                 </div>
 
                 {/* Tools */}
-                <div className="mb-12">
+                <div id="tools" className="mb-12 scroll-mt-36">
                     <h2 className="font-display text-2xl text-crimson mb-4">
                         TOOLS USED
                     </h2>
@@ -160,7 +191,7 @@ export default function GamePage({ params }: GamePageProps) {
 
                 {/* Key Design Decisions */}
                 {game.keyDecisions && game.keyDecisions.length > 0 && (
-                    <div className="mb-12">
+                    <div id="design-decisions" className="mb-12 scroll-mt-36">
                         <h2 className="font-display text-2xl text-crimson mb-4">
                             KEY DESIGN DECISIONS
                         </h2>
@@ -195,7 +226,7 @@ export default function GamePage({ params }: GamePageProps) {
 
                 {/* Design Contributions */}
                 {game.designContributions && game.designContributions.length > 0 && (
-                    <div className="mb-12">
+                    <div id="design-contributions" className="mb-12 scroll-mt-36">
                         <h2 className="font-display text-2xl text-crimson mb-4">
                             DESIGN CONTRIBUTIONS
                         </h2>
@@ -224,7 +255,7 @@ export default function GamePage({ params }: GamePageProps) {
 
                 {/* Screenshots */}
                 {game.screenshots && game.screenshots.length > 0 && (
-                    <div className="mb-12">
+                    <div id="screenshots" className="mb-12 scroll-mt-36">
                         <h2 className="font-display text-2xl text-crimson mb-4">
                             SCREENSHOTS
                         </h2>
@@ -255,6 +286,9 @@ export default function GamePage({ params }: GamePageProps) {
                     </div>
                 )}
             </div>
+
+            {/* Persona 5 Section Navigator */}
+            <SectionNav sections={sections} />
         </main>
     );
 }
