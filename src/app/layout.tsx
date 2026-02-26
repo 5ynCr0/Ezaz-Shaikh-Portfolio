@@ -68,6 +68,7 @@ const oswald = Oswald({
 
 import Header from "@/components/Header";
 import RouteTransition from "@/components/RouteTransition";
+import GlitchedCursor from "@/components/GlitchedCursor";
 
 export default function RootLayout({
     children,
@@ -79,7 +80,8 @@ export default function RootLayout({
             <head>
                 <JsonLd />
             </head>
-            <body className={`${inter.variable} ${bebas.variable} ${oswald.variable} bg-ink text-cream overflow-x-hidden font-body`}>
+            <body className={`${inter.variable} ${bebas.variable} ${oswald.variable} bg-ink text-cream overflow-x-hidden font-body cursor-none`}>
+                <GlitchedCursor />
                 <OverlayEffects />
                 <Header />
                 <Navigation />
