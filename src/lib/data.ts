@@ -61,7 +61,7 @@ export const games: Game[] = [
         tools: ["Unity", "Figma", "VS Code", "DOTween", "Premiere Pro", "Photoshop", "Xcode", "Steamworks"],
         keyDecisions: [
             {
-                decision: "Chose a roguelike run structure over linear progression to support replayability and sustained player engagement.",
+                decision: "Chose a roguelike run structure to create a tightly contained systemic loop where player expression, build variation, and failure-driven learning could emerge organically.",
                 tradeoff: "Accepted higher design complexity and balance overhead in exchange for runs that felt meaningfully different, avoiding repetition and rigid difficulty ramps."
             },
             {

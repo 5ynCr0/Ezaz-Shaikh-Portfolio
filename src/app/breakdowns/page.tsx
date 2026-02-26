@@ -36,6 +36,27 @@ const breakdowns = [
     },
     {
         id: 2,
+        title: "The Craft of Designing Systems in Games",
+        game: "Game Systems Design",
+        type: "Systems Design Analysis",
+        excerpt:
+            "How complexity transforms into depth, and why systemic clarity determines long-term engagement.",
+        link: "https://www.linkedin.com/pulse/craft-designing-systems-games-ezaz-shaikh-sez4c",
+        sections: [
+            "Complexity is the Inventory",
+            "Where Systems Begin",
+            "Elegance as Structural Clarity",
+            "Depth Across Genres",
+            "Psychology of Engagement",
+            "Danger of Delayed Feedback",
+            "Math, Pacing, and Balance",
+            "Load-Bearing Pillars",
+            "Inevitability of Trade-Offs",
+            "True Craft of Systems Design",
+        ],
+    },
+    {
+        id: 3,
         title: "Complex vs Complicated in Game Design",
         game: "Game Systems Design",
         type: "System Design Fundamentals",
@@ -51,7 +72,7 @@ const breakdowns = [
         ],
     },
     {
-        id: 3,
+        id: 4,
         title: "Confusion Is Feedback",
         game: "Gameplay Design",
         type: "Design Principles",
@@ -66,7 +87,7 @@ const breakdowns = [
         ],
     },
     {
-        id: 4,
+        id: 5,
         title: "Start With the Hook",
         game: "Showcase & Presentation",
         type: "Design Principles",
