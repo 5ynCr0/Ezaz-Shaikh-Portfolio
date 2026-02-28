@@ -150,7 +150,7 @@
     box-shadow: 8px 8px 0px 0px var(--crimson);
   }
 
-  /* Navigation Link */
+  /* Navigation Link — legacy (kept for backward compat) */
   .nav-link {
     @apply relative font-display text-2xl uppercase tracking-wider;
     @apply text-cream transition-colors duration-200;
@@ -169,6 +169,143 @@
   .nav-link:hover {
     @apply text-crimson;
   }
+
+  /* ================================================================
+     PERSONA 5 NAVIGATION — Glitch / Jagged System
+  ================================================================ */
+
+  /* Hamburger button chrome */
+  .nav-btn-glitch {
+    position: relative;
+    box-shadow: 4px 4px 0px 0px var(--ink);
+    transition: box-shadow 0.12s ease, transform 0.12s ease;
+  }
+
+  .nav-btn-glitch:hover {
+    box-shadow: 6px 6px 0px 0px var(--ink);
+  }
+
+  /* Corner accent dots */
+  .nav-btn-corner {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: var(--cream);
+  }
+
+  .nav-btn-corner--tl {
+    top: -1px;
+    left: -1px;
+  }
+
+  .nav-btn-corner--br {
+    bottom: -1px;
+    right: -1px;
+  }
+
+  /* Random glitch flicker on button */
+  .nav-btn-flicker {
+    animation: nav-btn-glitch-anim 0.15s steps(2) forwards;
+  }
+
+  /* Dark panel background */
+  .nav-panel {
+    background: var(--ink);
+    border-right: 4px solid var(--crimson);
+    /* Diagonal right edge clip — the P5 signature slash */
+    clip-path: polygon(0 0, 100% 0, 96% 100%, 0 100%);
+  }
+
+  /* Scanlines inside the nav panel */
+  .nav-scanlines {
+    background: repeating-linear-gradient(0deg,
+        transparent,
+        transparent 2px,
+        rgba(250, 247, 240, 0.03) 2px,
+        rgba(250, 247, 240, 0.03) 4px);
+    background-size: 100% 4px;
+    pointer-events: none;
+  }
+
+  /* Glitch sweep animation inside the nav panel */
+  .nav-glitch-sweep {
+    background: linear-gradient(0deg,
+        transparent 0%,
+        transparent 44%,
+        rgba(231, 58, 58, 0.04) 47%,
+        rgba(250, 247, 240, 0.07) 50%,
+        rgba(231, 58, 58, 0.04) 53%,
+        transparent 56%,
+        transparent 100%);
+    animation: nav-sweep 8s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  /* P5 nav link wrapper */
+  .nav-link-p5 {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    position: relative;
+    outline: none;
+  }
+
+  /* Active nav item — bigger, skewed, bold shadow */
+  .nav-item-active {
+    font-size: 3.75rem;
+    /* text-6xl */
+    line-height: 1;
+    text-shadow:
+      3px 3px 0px rgba(0, 0, 0, 0.9),
+      -1px -1px 0px rgba(0, 0, 0, 0.6),
+      0 0 20px rgba(231, 58, 58, 0.4);
+    letter-spacing: -0.01em;
+  }
+
+  /* Glitch signal divider — three layered animated bars */
+  .nav-glitch-divider {
+    position: relative;
+    height: 8px;
+    overflow: visible;
+  }
+
+  .nav-glitch-divider__main,
+  .nav-glitch-divider__ghost1,
+  .nav-glitch-divider__ghost2 {
+    position: absolute;
+    top: 50%;
+    display: block;
+    height: 2px;
+    transform: translateY(-50%);
+  }
+
+  /* Main bar — full width, crimson, continuous glitch shift */
+  .nav-glitch-divider__main {
+    left: 0;
+    right: 0;
+    background: var(--crimson);
+    animation: ndiv-main 3.5s steps(1) infinite;
+  }
+
+  /* Ghost 1 — slightly offset, electric blue tint, drifts */
+  .nav-glitch-divider__ghost1 {
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(0, 212, 255, 0.55);
+    animation: ndiv-ghost1 3.5s steps(1) infinite;
+    mix-blend-mode: screen;
+  }
+
+  /* Ghost 2 — shorter, offset to right, flicker */
+  .nav-glitch-divider__ghost2 {
+    left: 15%;
+    right: 10%;
+    height: 1px;
+    background: rgba(231, 58, 58, 0.6);
+    animation: ndiv-ghost2 2.8s steps(1) infinite;
+  }
+
 
   /* Section Divider */
   .section-divider {
@@ -368,6 +505,193 @@
 
   100% {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+/* Nav hamburger glitch flicker */
+@keyframes nav-btn-glitch-anim {
+  0% {
+    transform: skewX(-6deg) translate(0, 0);
+    filter: hue-rotate(0deg);
+  }
+
+  25% {
+    transform: skewX(-10deg) translate(-3px, 1px);
+    filter: hue-rotate(90deg);
+  }
+
+  50% {
+    transform: skewX(-4deg) translate(2px, -1px);
+    filter: hue-rotate(180deg);
+  }
+
+  75% {
+    transform: skewX(-8deg) translate(-1px, 2px);
+    filter: hue-rotate(270deg);
+  }
+
+  100% {
+    transform: skewX(-6deg) translate(0, 0);
+    filter: hue-rotate(0deg);
+  }
+}
+
+/* Nav panel glitch sweep bar */
+@keyframes nav-sweep {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+/* Chromatic aberration jitter on nav item hover */
+@keyframes nav-chroma-jitter {
+  0% {
+    transform: translate(-3px, -1px);
+  }
+
+  33% {
+    transform: translate(-2px, 1px);
+  }
+
+  66% {
+    transform: translate(-4px, -2px);
+  }
+
+  100% {
+    transform: translate(-3px, -1px);
+  }
+}
+
+/* Glitch divider — main bar: occasionally clips & shifts */
+@keyframes ndiv-main {
+
+  0%,
+  78%,
+  82%,
+  88%,
+  100% {
+    transform: translateY(-50%) translateX(0) scaleX(1);
+    clip-path: none;
+    opacity: 1;
+  }
+
+  79% {
+    transform: translateY(-50%) translateX(-4px) scaleX(0.92);
+    clip-path: inset(0 15% 0 0);
+    opacity: 0.9;
+  }
+
+  80% {
+    transform: translateY(-50%) translateX(3px) scaleX(1);
+    clip-path: inset(0 0 0 8%);
+    opacity: 1;
+  }
+
+  81% {
+    transform: translateY(-50%) translateX(0) scaleX(1);
+    clip-path: none;
+    opacity: 1;
+  }
+
+  89% {
+    transform: translateY(-50%) translateX(5px) scaleX(0.85);
+    opacity: 0.7;
+  }
+
+  90% {
+    transform: translateY(-50%) translateX(0) scaleX(1);
+    opacity: 1;
+  }
+}
+
+/* Glitch divider — ghost1: drifts vertically, fades */
+@keyframes ndiv-ghost1 {
+
+  0%,
+  74%,
+  78%,
+  100% {
+    transform: translateY(-50%);
+    opacity: 0;
+  }
+
+  75% {
+    transform: translateY(calc(-50% + 3px));
+    opacity: 0.8;
+  }
+
+  76% {
+    transform: translateY(calc(-50% - 2px));
+    opacity: 0.5;
+  }
+
+  77% {
+    transform: translateY(-50%);
+    opacity: 0;
+  }
+
+  85% {
+    transform: translateY(calc(-50% + 4px));
+    opacity: 0.6;
+  }
+
+  86% {
+    transform: translateY(-50%);
+    opacity: 0;
+  }
+}
+
+/* Glitch divider — ghost2: width flickers randomly */
+@keyframes ndiv-ghost2 {
+
+  0%,
+  55%,
+  59%,
+  80%,
+  84%,
+  100% {
+    opacity: 0;
+    transform: translateY(-50%);
+  }
+
+  56% {
+    opacity: 0.7;
+    left: 30%;
+    right: 5%;
+    transform: translateY(calc(-50% + 2px));
+  }
+
+  57% {
+    opacity: 0;
+  }
+
+  58% {
+    opacity: 0.5;
+    left: 10%;
+    right: 25%;
+    transform: translateY(calc(-50% - 1px));
+  }
+
+  81% {
+    opacity: 0.6;
+    left: 20%;
+    right: 15%;
+    transform: translateY(-50%);
+  }
+
+  82% {
+    opacity: 0;
+  }
+
+  83% {
+    opacity: 0.4;
+    left: 40%;
+    right: 0;
+    transform: translateY(calc(-50% + 1px));
   }
 }
 

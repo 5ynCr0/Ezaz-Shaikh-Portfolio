@@ -52,8 +52,8 @@ export const staggerContainer: Variants = {
     initial: {},
     animate: {
         transition: {
-            staggerChildren: 0.1,
-            delayChildren: 0.2,
+            staggerChildren: 0.08,
+            delayChildren: 0.15,
         },
     },
 };
@@ -180,31 +180,41 @@ export const textReveal: Variants = {
     },
 };
 
-// Menu animation
+// Menu animation — Persona 5 slash reveal
 export const menuVariants: Variants = {
     closed: {
-        x: "-100%",
+        clipPath: "polygon(0 0, 0 0, 0 100%, 0% 100%)",
+        skewX: -8,
         transition: {
-            duration: 0.4,
-            ease: [0.16, 1, 0.3, 1],
+            duration: 0.35,
+            ease: [0.76, 0, 0.24, 1],
         },
     },
     open: {
-        x: 0,
+        clipPath: "polygon(0 0, 105% 0, 105% 100%, 0 100%)",
+        skewX: 0,
         transition: {
-            duration: 0.4,
+            duration: 0.45,
             ease: [0.16, 1, 0.3, 1],
         },
     },
 };
 
+// Each nav item — slams in from left with an overshoot
 export const menuItemVariants: Variants = {
     closed: {
         opacity: 0,
-        x: -50,
+        x: -80,
+        skewX: -12,
     },
-    open: {
+    open: (i: number) => ({
         opacity: 1,
         x: 0,
-    },
+        skewX: 0,
+        transition: {
+            delay: i * 0.07,
+            duration: 0.4,
+            ease: [0.34, 1.56, 0.64, 1],
+        },
+    }),
 };

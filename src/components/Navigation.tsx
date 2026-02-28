@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useAnimationControls } from "framer-motion";
 import { menuVariants, menuItemVariants, staggerContainer } from "@/lib/animations";
 import RansomNote from "./RansomNote";
 
@@ -16,90 +16,126 @@ const navItems = [
 
 export default function Navigation() {
     const [isOpen, setIsOpen] = useState(false);
+    const [glitching, setGlitching] = useState(false);
     const pathname = usePathname();
     const router = useRouter();
+    const btnControls = useAnimationControls();
+
     const activeLabel = navItems.find((item) => item.href === pathname)?.label || "About";
 
-    // Check if we are on a detail page (e.g., /games/slug or /gdd/slug)
-    // We exclude the main listing pages themselves
     const isGameDetail = pathname.startsWith("/games/") && pathname !== "/games";
     const isGddDetail = pathname.startsWith("/gdd/") && pathname !== "/gdd";
     const showBackButton = isGameDetail || isGddDetail;
 
+    // Random idle glitch on the hamburger
+    useEffect(() => {
+        const scheduleGlitch = () => {
+            const t = setTimeout(() => {
+                setGlitching(true);
+                setTimeout(() => setGlitching(false), 120 + Math.random() * 80);
+                scheduleGlitch();
+            }, 3500 + Math.random() * 5000);
+            return t;
+        };
+        const t = scheduleGlitch();
+        return () => clearTimeout(t);
+    }, []);
+
     const handleMainButtonClick = () => {
+        btnControls.start({
+            x: [0, -4, 3, -2, 0],
+            skewX: [0, -8, 4, 0],
+            transition: { duration: 0.22, ease: "easeOut" },
+        });
         if (showBackButton) {
-            // Navigate back to the respective list
             if (isGameDetail) router.push("/");
             else if (isGddDetail) router.push("/gdd");
         } else {
-            // Toggle menu
             setIsOpen(!isOpen);
         }
     };
 
     return (
         <>
-            {/* Menu Toggle / Back Button */}
-            <button
+            {/* ── Hamburger / Back Button ── */}
+            <motion.button
                 onClick={handleMainButtonClick}
-                className="fixed top-6 left-6 z-50 w-14 h-14 flex items-center justify-center bg-crimson border-4 border-ink shadow-brutal-sm transition-transform hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-brutal"
-                style={{ transform: "skewX(-6deg)" }}
+                animate={btnControls}
+                className={`
+                    fixed top-6 left-6 z-50
+                    w-14 h-14
+                    flex items-center justify-center
+                    bg-crimson border-4 border-ink
+                    nav-btn-glitch
+                    ${glitching ? "nav-btn-flicker" : ""}
+                `}
+                style={{ transform: "skewX(-6deg)", transformOrigin: "center" }}
+                whileHover={{ x: -3, y: -3 }}
+                whileTap={{ x: 2, y: 2, scale: 0.96 }}
                 aria-label={showBackButton ? "Go Back" : "Toggle menu"}
             >
-                {/* Un-skew wrapper to isolate rotation animations from skew */}
+                <span className="nav-btn-corner nav-btn-corner--tl" />
+                <span className="nav-btn-corner nav-btn-corner--br" />
+
                 <div className="flex flex-col items-center justify-center gap-1.5" style={{ transform: "skewX(6deg)" }}>
-                    {/* Top Bar */}
                     <motion.span
-                        className="w-6 h-0.5 bg-cream block origin-center"
+                        className="h-0.5 bg-cream block origin-center"
                         animate={
                             showBackButton
-                                ? { rotate: -45, y: 5, width: "12px", x: -5 } // Top part of arrow
+                                ? { rotate: -45, y: 5, width: "12px", x: -5 }
                                 : isOpen
-                                    ? { rotate: 45, y: 8 } // X state
-                                    : { rotate: 0, y: 0, width: "24px", x: 0 } // Hamburg state
+                                    ? { rotate: 45, y: 8, width: "24px" }
+                                    : { rotate: 0, y: 0, width: "24px", x: 0 }
                         }
+                        transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
                     />
-
-                    {/* Middle Bar */}
                     <motion.span
-                        className="w-6 h-0.5 bg-cream block"
+                        className="h-0.5 bg-cream block"
                         animate={
                             showBackButton
-                                ? { opacity: 1, rotate: 0, width: "24px" } // Middle shaft of arrow
+                                ? { opacity: 1, rotate: 0, width: "24px" }
                                 : isOpen
-                                    ? { opacity: 0 } // Hidden in X state
-                                    : { opacity: 1, rotate: 0, width: "24px" } // Hamburg state
+                                    ? { opacity: 0, width: "24px" }
+                                    : { opacity: 1, rotate: 0, width: "24px" }
                         }
+                        transition={{ duration: 0.2 }}
                     />
-
-                    {/* Bottom Bar */}
                     <motion.span
-                        className="w-6 h-0.5 bg-cream block origin-center"
+                        className="h-0.5 bg-cream block origin-center"
                         animate={
                             showBackButton
-                                ? { rotate: 45, y: -5, width: "12px", x: -5 } // Bottom part of arrow
+                                ? { rotate: 45, y: -5, width: "12px", x: -5 }
                                 : isOpen
-                                    ? { rotate: -45, y: -8 } // X state
-                                    : { rotate: 0, y: 0, width: "24px", x: 0 } // Hamburg state
+                                    ? { rotate: -45, y: -8, width: "24px" }
+                                    : { rotate: 0, y: 0, width: "24px", x: 0 }
                         }
+                        transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
                     />
                 </div>
-            </button>
 
-            {/* Overlay */}
+                {glitching && (
+                    <div
+                        className="absolute inset-0 bg-crimson/40 mix-blend-screen pointer-events-none"
+                        style={{ transform: "translate(3px, -2px) skewX(4deg)" }}
+                    />
+                )}
+            </motion.button>
+
+            {/* ── Overlay ── */}
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 bg-ink/80 z-40"
+                        transition={{ duration: 0.3 }}
+                        className="fixed inset-0 bg-ink/85 z-40 backdrop-blur-[2px]"
                         onClick={() => setIsOpen(false)}
                     />
                 )}
             </AnimatePresence>
 
-            {/* Navigation Menu */}
+            {/* ── Navigation Menu Panel ── */}
             <AnimatePresence>
                 {isOpen && (
                     <motion.nav
@@ -107,23 +143,53 @@ export default function Navigation() {
                         initial="closed"
                         animate="open"
                         exit="closed"
-                        className="fixed left-0 top-0 h-full w-96 bg-ink border-r-4 border-crimson z-40 flex flex-col justify-center px-8"
+                        className="nav-panel fixed left-0 top-0 h-full z-40 flex flex-col justify-center px-8"
+                        style={{ width: "min(85vw, 420px)" }}
                     >
-                        {/* Decorative Lines */}
-                        <div className="absolute top-0 left-0 w-full h-2 bg-crimson" />
-                        <div className="absolute bottom-0 left-0 w-full h-2 bg-crimson" />
+                        {/* Top slash bar */}
+                        <motion.div
+                            className="absolute top-0 left-0 right-0 h-1.5 bg-crimson"
+                            initial={{ scaleX: 0, originX: 0 }}
+                            animate={{ scaleX: 1 }}
+                            transition={{ duration: 0.3, delay: 0.1 }}
+                        />
+                        {/* Bottom slash bar */}
+                        <motion.div
+                            className="absolute bottom-0 left-0 right-0 h-1.5 bg-crimson"
+                            initial={{ scaleX: 0, originX: 0 }}
+                            animate={{ scaleX: 1 }}
+                            transition={{ duration: 0.3, delay: 0.15 }}
+                        />
+                        {/* Right edge */}
+                        <motion.div
+                            className="absolute top-0 right-0 bottom-0 w-1.5 bg-crimson"
+                            initial={{ scaleY: 0, originY: 0 }}
+                            animate={{ scaleY: 1 }}
+                            transition={{ duration: 0.35, delay: 0.12 }}
+                        />
 
-                        {/* Logo/Name */}
-                        <div className="absolute top-8 left-24">
-                            <RansomNote text={activeLabel} animate={false} size="sm" />
-                        </div>
 
-                        {/* Nav Items */}
+                        {/* Active page label — beside hamburger button on the same row */}
+                        <motion.div
+                            className="absolute top-6 right-6 flex items-center overflow-hidden"
+                            style={{ height: "56px", left: "96px" }}
+                            initial={{ opacity: 0, x: -8 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.2, duration: 0.3 }}
+                        >
+                            <div style={{ fontSize: "clamp(1.2rem, 4vw, 1.85rem)" }}>
+                                <RansomNote text={activeLabel} animate={false} size="sm" />
+                            </div>
+                        </motion.div>
+
+
+
+                        {/* ── Nav Items ── */}
                         <motion.ul
                             variants={staggerContainer}
                             initial="initial"
                             animate="animate"
-                            className="space-y-6"
+                            className="space-y-1 mt-8"
                         >
                             {navItems.map((item, index) => {
                                 const isActive = pathname === item.href;
@@ -132,50 +198,66 @@ export default function Navigation() {
                                         key={item.href}
                                         variants={menuItemVariants}
                                         custom={index}
+                                        className="relative"
                                     >
                                         <Link
                                             href={item.href}
                                             onClick={() => setIsOpen(false)}
-                                            className="group flex items-center gap-4"
+                                            className="nav-link-p5 group flex items-center gap-3 py-3 px-4 relative overflow-hidden"
                                         >
-                                            <span
-                                                className={`text-crimson font-display text-xl transition-all duration-200 ${isActive
-                                                    ? "opacity-100 translate-x-0"
-                                                    : "opacity-0 -translate-x-4"
-                                                    }`}
-                                            >
-                                                <svg
-                                                    viewBox="0 0 24 24"
-                                                    className="w-6 h-6 fill-current"
-                                                    style={{ transform: "translateY(2px)" }}
-                                                >
-                                                    <path d="M8 5v14l11-7z" />
-                                                </svg>
-                                            </span>
-                                            <span
-                                                className={`font-display text-5xl transition-colors duration-200 relative ${isActive
-                                                    ? "text-crimson"
-                                                    : "text-cream group-hover:text-crimson"
-                                                    }`}
+                                            {/* Crimson underline that slides in on hover */}
+                                            <motion.span
+                                                className="nav-hover-line absolute bottom-0 left-4 right-4 h-0.5 bg-crimson origin-left"
+                                                initial={{ scaleX: 0 }}
+                                                whileHover={{ scaleX: 1 }}
+                                                transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                                            />
+
+                                            {/* Label — active is larger + glitch-shadow, inactive is normal */}
+                                            <motion.span
+                                                className={`
+                                                    relative z-10
+                                                    font-display uppercase tracking-wide leading-none
+                                                    transition-colors duration-150
+                                                    ${isActive
+                                                        ? "nav-item-active text-crimson"
+                                                        : "text-5xl text-cream group-hover:text-crimson"
+                                                    }
+                                                `}
+                                                animate={isActive
+                                                    ? { skewX: -4 }
+                                                    : { skewX: 0 }
+                                                }
+                                                transition={{ duration: 0.15 }}
                                             >
                                                 {item.label}
-                                            </span>
+                                            </motion.span>
                                         </Link>
                                     </motion.li>
                                 );
                             })}
                         </motion.ul>
 
-                        {/* Contact CTA */}
-                        <div className="absolute bottom-8 left-8 right-8">
+                        {/* ── CTA Button ── */}
+                        <motion.div
+                            className="absolute bottom-8 left-8 right-8"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.35, duration: 0.35 }}
+                        >
+                            {/* Glitch signal divider above CTA */}
+                            <div className="nav-glitch-divider mb-5" aria-hidden="true">
+                                <span className="nav-glitch-divider__main" />
+                                <span className="nav-glitch-divider__ghost1" />
+                                <span className="nav-glitch-divider__ghost2" />
+                            </div>
+
                             <button
                                 onClick={() => {
                                     setIsOpen(false);
-                                    // If already on /about, just navigate the cube
                                     if (pathname === "/about") {
                                         window.dispatchEvent(new CustomEvent("cube:navigate", { detail: { index: 3 } }));
                                     } else {
-                                        // Client-side navigation so RouteTransition detects the change
                                         router.push("/about?section=3");
                                     }
                                 }}
@@ -183,7 +265,7 @@ export default function Navigation() {
                             >
                                 <span className="btn-persona-text">Get in Touch</span>
                             </button>
-                        </div>
+                        </motion.div>
                     </motion.nav>
                 )}
             </AnimatePresence>
