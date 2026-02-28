@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Button, { IconButton } from "./Button";
 import { motion } from "framer-motion";
 import RansomNote from "./RansomNote";
 
@@ -34,29 +35,17 @@ export default function Header() {
                         transition={{ duration: 0.5, delay: 0.2 }}
                         className="flex items-center gap-4 pointer-events-auto"
                     >
-                        <a
+                        <IconButton
+                            icon={<span style={{ fontSize: "1.2rem", fontFamily: "serif", fontWeight: "bold" }}>in</span>}
+                            label="LinkedIn"
                             href="https://www.linkedin.com/in/ezazxshaikh/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-ink-light border-2 border-cream/30 text-cream hover:border-crimson hover:text-crimson transition-colors duration-200"
-                            style={{ transform: "skewX(-6deg)" }}
-                            title="LinkedIn"
-                        >
-                            <span style={{ transform: "skewX(6deg)", fontSize: "1.2rem" }}>
-                                in
-                            </span>
-                        </a>
+                        />
 
-                        <a
-                            href="/resume.pdf"
-                            download
-                            className="hidden md:flex h-12 items-center justify-center px-6 bg-crimson text-cream border-2 border-ink shadow-brutal hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[4px_4px_0px_0px_#0D0D0D] transition-all font-display tracking-wider text-base cursor-pointer"
-                            style={{ transform: "skewX(-6deg)" }}
-                        >
-                            <span style={{ transform: "skewX(6deg)" }}>
-                                RESUME
-                            </span>
-                        </a>
+                        <div className="hidden md:block">
+                            <Button href="/resume.pdf" download variant="primary" size="sm" className="h-12 flex items-center px-5">
+                                Resume
+                            </Button>
+                        </div>
                     </motion.div>
                 </div>
             </div>

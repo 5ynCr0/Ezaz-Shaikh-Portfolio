@@ -87,10 +87,18 @@ interface IconButtonProps {
 export function IconButton({ icon, label, href, onClick }: IconButtonProps) {
     const content = (
         <motion.div
-            className="w-12 h-12 flex items-center justify-center bg-ink-light border-2 border-cream/30 text-cream hover:border-crimson hover:text-crimson transition-colors duration-200"
-            style={{ transform: "skewX(-6deg)" }}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
+            className="w-12 h-12 flex items-center justify-center bg-ink-light border-2 border-cream/30 text-cream transition-colors duration-150"
+            initial={{ skewX: -6 }}
+            whileHover={{
+                skewX: 0,
+                x: -3,
+                y: -3,
+                borderColor: "#E73A3A",
+                color: "#E73A3A",
+                boxShadow: "6px 6px 0px 0px #E73A3A",
+            }}
+            whileTap={{ scale: 0.95, x: 1, y: 1 }}
+            transition={{ type: "tween", duration: 0.12, ease: "easeOut" }}
             title={label}
         >
             <span style={{ display: "inline-block", transform: "skewX(6deg)" }}>

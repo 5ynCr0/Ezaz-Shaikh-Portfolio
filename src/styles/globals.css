@@ -101,23 +101,39 @@
     color: transparent;
   }
 
-  /* CTA Buttons */
+  /* CTA Buttons — P5 hard-stamp hover */
   .btn-persona {
     @apply relative inline-block px-8 py-4 font-display text-xl uppercase tracking-wider;
     @apply bg-crimson text-cream border-4 border-ink;
-    @apply transition-all duration-200;
     transform: skewX(-6deg);
     box-shadow: 6px 6px 0px 0px var(--ink);
+    /* No transition — hover snaps instantly */
+    transition: box-shadow 0s steps(1), transform 0s steps(1);
+    overflow: hidden;
+  }
+
+  /* White stamp flash on hover entry */
+  .btn-persona::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.3);
+    opacity: 0;
+    pointer-events: none;
   }
 
   .btn-persona:hover {
-    transform: skewX(-6deg) translate(-3px, -3px);
-    box-shadow: 9px 9px 0px 0px var(--ink);
+    transform: skewX(-6deg) translate(-4px, -4px);
+    box-shadow: 10px 10px 0px 0px var(--ink);
+  }
+
+  .btn-persona:hover::after {
+    animation: btn-stamp-flash 0.18s steps(2) forwards;
   }
 
   .btn-persona:active {
-    transform: skewX(-6deg) translate(2px, 2px);
-    box-shadow: 3px 3px 0px 0px var(--ink);
+    transform: skewX(-6deg) translate(3px, 3px);
+    box-shadow: 2px 2px 0px 0px var(--ink);
   }
 
   .btn-persona-text {
@@ -125,29 +141,54 @@
     transform: skewX(6deg);
   }
 
-  /* Secondary Button */
+  /* Secondary Button — diagonal slash fill on hover */
   .btn-outline {
     @apply relative inline-block px-8 py-4 font-display text-xl uppercase tracking-wider;
     @apply bg-transparent text-cream border-4 border-cream;
-    @apply transition-all duration-200;
     transform: skewX(-6deg);
+    overflow: hidden;
+    transition: color 0s steps(1), border-color 0.1s steps(1);
+  }
+
+  .btn-outline::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--cream);
+    /* Starts as a right-to-left diagonal sliver, expands to full */
+    clip-path: polygon(110% 0%, 110% 0%, 110% 100%, 110% 100%);
+    transition: clip-path 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .btn-outline:hover::before {
+    clip-path: polygon(-5% 0%, 110% 0%, 110% 100%, -5% 100%);
   }
 
   .btn-outline:hover {
-    @apply bg-cream text-ink;
+    color: var(--ink);
+    border-color: var(--cream);
   }
 
-  /* Card Styles */
+  .btn-outline>* {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Card Styles — hard snap translate + crimson border flash */
   .game-card {
     @apply relative overflow-hidden;
     @apply bg-ink-light border-4 border-cream/20;
-    @apply transition-all duration-300;
+    /* Snap on hover, ease back on leave */
+    transition: transform 0s steps(1), box-shadow 0s steps(1), border-color 0.15s ease;
   }
 
   .game-card:hover {
     @apply border-crimson;
-    transform: translate(-4px, -4px);
-    box-shadow: 8px 8px 0px 0px var(--crimson);
+    transform: translate(-5px, -5px) skewX(-1deg);
+    box-shadow: 9px 9px 0px 0px var(--crimson);
+    animation: card-border-flash 0.25s steps(2) forwards;
   }
 
   /* Navigation Link — legacy (kept for backward compat) */
@@ -248,6 +289,16 @@
     text-decoration: none;
     position: relative;
     outline: none;
+  }
+
+  /* Effect 2: Hover glitch stamp
+     On hover the whole row briefly displaces left with a red RGB ghost behind it */
+  .nav-item-hover-glitch {
+    transition: transform 0.05s steps(1);
+  }
+
+  .nav-item-hover-glitch:hover {
+    animation: nav-hover-stamp 0.22s steps(2) forwards;
   }
 
   /* Active nav item — bigger, skewed, bold shadow */
@@ -692,6 +743,63 @@
     left: 40%;
     right: 0;
     transform: translateY(calc(-50% + 1px));
+  }
+}
+
+/* Effect 2: Hover glitch stamp — row displacement */
+@keyframes nav-hover-stamp {
+  0% {
+    transform: translateX(0) skewX(0deg);
+    filter: none;
+  }
+
+  33% {
+    transform: translateX(-5px) skewX(-3deg);
+    filter: hue-rotate(20deg) brightness(1.1);
+  }
+
+  66% {
+    transform: translateX(3px) skewX(2deg);
+    filter: hue-rotate(-10deg);
+  }
+
+  100% {
+    transform: translateX(0) skewX(0deg);
+    filter: none;
+  }
+}
+
+/* btn-persona: white stamp flash on hover entry */
+@keyframes btn-stamp-flash {
+  0% {
+    opacity: 0.35;
+  }
+
+  50% {
+    opacity: 0.15;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+/* game-card: hard border colour pulse on hover entry */
+@keyframes card-border-flash {
+  0% {
+    border-color: var(--cream);
+  }
+
+  40% {
+    border-color: var(--crimson);
+  }
+
+  70% {
+    border-color: rgba(231, 58, 58, 0.5);
+  }
+
+  100% {
+    border-color: var(--crimson);
   }
 }
 

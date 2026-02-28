@@ -54,13 +54,6 @@ export default function GameCard({
                     </div>
                 )}
 
-                {/* Red overlay on hover */}
-                <motion.div
-                    className="absolute inset-0 bg-crimson/80"
-                    initial={{ x: "-100%" }}
-                    whileHover={{ x: 0 }}
-                    transition={{ duration: 0.3 }}
-                />
 
                 {/* Platform Badge */}
                 <div
@@ -112,13 +105,6 @@ export default function GameCard({
                 )}
             </div>
 
-            {/* Bottom Accent Line */}
-            <motion.div
-                className="absolute bottom-0 left-0 h-1 bg-crimson"
-                initial={{ width: 0 }}
-                whileHover={{ width: "100%" }}
-                transition={{ duration: 0.3 }}
-            />
         </motion.div >
     );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence, useAnimationControls } from "framer-motion";
@@ -17,9 +17,12 @@ const navItems = [
 export default function Navigation() {
     const [isOpen, setIsOpen] = useState(false);
     const [glitching, setGlitching] = useState(false);
+    // Effect 4: idle bar jitter state — which bar (0=top,1=mid,2=bot) is jittering
+    const [jitterBar, setJitterBar] = useState<number | null>(null);
     const pathname = usePathname();
     const router = useRouter();
     const btnControls = useAnimationControls();
+    const barControls = [useAnimationControls(), useAnimationControls(), useAnimationControls()];
 
     const activeLabel = navItems.find((item) => item.href === pathname)?.label || "About";
 
@@ -27,7 +30,7 @@ export default function Navigation() {
     const isGddDetail = pathname.startsWith("/gdd/") && pathname !== "/gdd";
     const showBackButton = isGameDetail || isGddDetail;
 
-    // Random idle glitch on the hamburger
+    // Effect 1 (existing): random idle colour glitch on hamburger background
     useEffect(() => {
         const scheduleGlitch = () => {
             const t = setTimeout(() => {
@@ -40,6 +43,28 @@ export default function Navigation() {
         const t = scheduleGlitch();
         return () => clearTimeout(t);
     }, []);
+
+    // Effect 4: idle bar jitter — randomly jolt one hamburger bar
+    useEffect(() => {
+        if (isOpen) return; // only when menu is closed
+        const scheduleJitter = () => {
+            const t = setTimeout(async () => {
+                const bar = Math.floor(Math.random() * 3);
+                setJitterBar(bar);
+                await barControls[bar].start({
+                    x: [0, -5, 4, -2, 3, 0],
+                    opacity: [1, 0.4, 1, 0.6, 1],
+                    transition: { duration: 0.18, ease: "easeOut" },
+                });
+                setJitterBar(null);
+                scheduleJitter();
+            }, 4000 + Math.random() * 6000);
+            return t;
+        };
+        const t = scheduleJitter();
+        return () => clearTimeout(t);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isOpen]);
 
     const handleMainButtonClick = () => {
         btnControls.start({
@@ -54,6 +79,10 @@ export default function Navigation() {
             setIsOpen(!isOpen);
         }
     };
+
+    // Bars with jitter-aware controls
+    const barAnimate = (barIdx: number, defaultAnim: object) =>
+        jitterBar === barIdx ? barControls[barIdx] : defaultAnim;
 
     return (
         <>
@@ -78,37 +107,40 @@ export default function Navigation() {
                 <span className="nav-btn-corner nav-btn-corner--br" />
 
                 <div className="flex flex-col items-center justify-center gap-1.5" style={{ transform: "skewX(6deg)" }}>
+                    {/* Top bar — Effect 4: can jitter */}
                     <motion.span
                         className="h-0.5 bg-cream block origin-center"
-                        animate={
+                        animate={jitterBar === 0 ? barControls[0] : (
                             showBackButton
                                 ? { rotate: -45, y: 5, width: "12px", x: -5 }
                                 : isOpen
                                     ? { rotate: 45, y: 8, width: "24px" }
                                     : { rotate: 0, y: 0, width: "24px", x: 0 }
-                        }
+                        )}
                         transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
                     />
+                    {/* Middle bar */}
                     <motion.span
                         className="h-0.5 bg-cream block"
-                        animate={
+                        animate={jitterBar === 1 ? barControls[1] : (
                             showBackButton
                                 ? { opacity: 1, rotate: 0, width: "24px" }
                                 : isOpen
                                     ? { opacity: 0, width: "24px" }
                                     : { opacity: 1, rotate: 0, width: "24px" }
-                        }
+                        )}
                         transition={{ duration: 0.2 }}
                     />
+                    {/* Bottom bar */}
                     <motion.span
                         className="h-0.5 bg-cream block origin-center"
-                        animate={
+                        animate={jitterBar === 2 ? barControls[2] : (
                             showBackButton
                                 ? { rotate: 45, y: -5, width: "12px", x: -5 }
                                 : isOpen
                                     ? { rotate: -45, y: -8, width: "24px" }
                                     : { rotate: 0, y: 0, width: "24px", x: 0 }
-                        }
+                        )}
                         transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
                     />
                 </div>
@@ -146,6 +178,14 @@ export default function Navigation() {
                         className="nav-panel fixed left-0 top-0 h-full z-40 flex flex-col justify-center px-8"
                         style={{ width: "min(85vw, 420px)" }}
                     >
+                        {/* Effect 3: power-on CRT flash when panel opens */}
+                        <motion.div
+                            className="absolute inset-0 bg-white pointer-events-none z-50"
+                            initial={{ opacity: 0.55 }}
+                            animate={{ opacity: 0 }}
+                            transition={{ duration: 0.12, ease: "easeOut" }}
+                        />
+
                         {/* Top slash bar */}
                         <motion.div
                             className="absolute top-0 left-0 right-0 h-1.5 bg-crimson"
@@ -168,7 +208,6 @@ export default function Navigation() {
                             transition={{ duration: 0.35, delay: 0.12 }}
                         />
 
-
                         {/* Active page label — beside hamburger button on the same row */}
                         <motion.div
                             className="absolute top-6 right-6 flex items-center overflow-hidden"
@@ -181,8 +220,6 @@ export default function Navigation() {
                                 <RansomNote text={activeLabel} animate={false} size="sm" />
                             </div>
                         </motion.div>
-
-
 
                         {/* ── Nav Items ── */}
                         <motion.ul
@@ -200,12 +237,24 @@ export default function Navigation() {
                                         custom={index}
                                         className="relative"
                                     >
+                                        {/* Effect 1: Active left-edge slash mark */}
+                                        {isActive && (
+                                            <motion.span
+                                                className="absolute left-0 top-1 bottom-1 w-1 bg-crimson"
+                                                layoutId="activeSlash"
+                                                initial={{ scaleY: 0, originY: 0.5 }}
+                                                animate={{ scaleY: 1 }}
+                                                transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                                            />
+                                        )}
+
                                         <Link
                                             href={item.href}
                                             onClick={() => setIsOpen(false)}
-                                            className="nav-link-p5 group flex items-center gap-3 py-3 px-4 relative overflow-hidden"
+                                            // Effect 2: hover glitch stamp via CSS class
+                                            className="nav-link-p5 nav-item-hover-glitch group flex items-center gap-3 py-3 px-4 relative overflow-hidden"
                                         >
-                                            {/* Crimson underline that slides in on hover */}
+                                            {/* Underline slide on hover */}
                                             <motion.span
                                                 className="nav-hover-line absolute bottom-0 left-4 right-4 h-0.5 bg-crimson origin-left"
                                                 initial={{ scaleX: 0 }}
@@ -213,7 +262,7 @@ export default function Navigation() {
                                                 transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
                                             />
 
-                                            {/* Label — active is larger + glitch-shadow, inactive is normal */}
+                                            {/* Label */}
                                             <motion.span
                                                 className={`
                                                     relative z-10
@@ -224,10 +273,7 @@ export default function Navigation() {
                                                         : "text-5xl text-cream group-hover:text-crimson"
                                                     }
                                                 `}
-                                                animate={isActive
-                                                    ? { skewX: -4 }
-                                                    : { skewX: 0 }
-                                                }
+                                                animate={isActive ? { skewX: -4 } : { skewX: 0 }}
                                                 transition={{ duration: 0.15 }}
                                             >
                                                 {item.label}
